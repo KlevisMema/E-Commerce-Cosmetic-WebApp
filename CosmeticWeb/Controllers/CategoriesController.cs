@@ -19,23 +19,6 @@ namespace CosmeticWeb.Controllers
               return View(await _context.Categories.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -47,6 +30,8 @@ namespace CosmeticWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt = DateTime.UtcNow;
+                category.ModifiedAt = DateTime.UtcNow;
                 category.Id = Guid.NewGuid();
                 _context.Add(category);
                 await _context.SaveChangesAsync();
@@ -83,6 +68,7 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
+                    category.ModifiedAt = DateTime.UtcNow;
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }

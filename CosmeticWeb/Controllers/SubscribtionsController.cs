@@ -48,6 +48,7 @@ namespace CosmeticWeb.Controllers
             if (ModelState.IsValid)
             {
                 subscribe.Id = Guid.NewGuid();
+                subscribe.SubscribedAt = DateTime.UtcNow;
                 _context.Add(subscribe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,6 +84,7 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
+                    subscribe.SubscribedAt = DateTime.UtcNow;
                     _context.Update(subscribe);
                     await _context.SaveChangesAsync();
                 }

@@ -22,7 +22,7 @@ namespace CosmeticWeb.Models
         #endregion
 
         #region Data kur eshte krijuar/derguar ky kontakt
-        public DateTime Date { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; }
         #endregion
 
         #region Emaili i userit

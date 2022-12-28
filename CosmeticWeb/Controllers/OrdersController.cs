@@ -48,6 +48,7 @@ namespace CosmeticWeb.Controllers
             if (ModelState.IsValid)
             {
                 order.Id = Guid.NewGuid();
+                order.CreatedDate = DateTime.UtcNow;
                 _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,6 +84,7 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
+                    order.CreatedDate = DateTime.UtcNow;
                     _context.Update(order);
                     await _context.SaveChangesAsync();
                 }

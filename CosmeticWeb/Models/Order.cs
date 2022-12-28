@@ -38,7 +38,7 @@ namespace CosmeticWeb.Models
         #endregion
 
         #region Muaji kur kjo porosi eshte krijuar
-        public string CreatedDate { get; set; } = DateTime.Now.Month.ToString();
+        public DateTime CreatedDate { get; set; } 
         #endregion
 
         #region Lidhja me tabelen e OrderItem 1:M

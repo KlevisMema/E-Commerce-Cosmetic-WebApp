@@ -16,7 +16,7 @@ namespace CosmeticWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Testimonials.ToListAsync());
+            return View(await _context.Testimonials.ToListAsync());
         }
 
         public async Task<IActionResult> Details(Guid? id)
@@ -48,6 +48,7 @@ namespace CosmeticWeb.Controllers
             if (ModelState.IsValid)
             {
                 testimonial.Id = Guid.NewGuid();
+                testimonial.CreatedAt = DateTime.Now;
                 _context.Add(testimonial);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,6 +84,7 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
+                    testimonial.CreatedAt = DateTime.Now;
                     _context.Update(testimonial);
                     await _context.SaveChangesAsync();
                 }
@@ -132,14 +134,14 @@ namespace CosmeticWeb.Controllers
             {
                 _context.Testimonials.Remove(testimonial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TestimonialExists(Guid id)
         {
-          return _context.Testimonials.Any(e => e.Id == id);
+            return _context.Testimonials.Any(e => e.Id == id);
         }
     }
 }

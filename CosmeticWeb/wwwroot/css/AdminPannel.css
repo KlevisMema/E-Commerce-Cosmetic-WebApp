@@ -58,7 +58,7 @@ td {
     padding: 8px;
 }
 
-.side-menu {
+._side-menu {
     position: fixed;
     background: #f05462;
     width: 20vw;
@@ -67,14 +67,18 @@ td {
     flex-direction: column;
 }
 
-.side-menu .brand-name {
+._side-menu .brand-name {
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.side-menu li {
+._side-menu ul li a{
+    color: white;
+}
+
+._side-menu li {
     font-size: 24px;
     padding: 10px 40px;
     color: white;
@@ -82,12 +86,12 @@ td {
     align-items: center;
 }
 
-.side-menu li:hover {
-    background: white;
+._side-menu li:hover {
+    background: #f5858f;
     color: #f05462;
 }
 
-.container {
+._container {
     position: absolute;
     right: 0;
     width: 80vw;
@@ -95,7 +99,7 @@ td {
     background: #f1f1f1;
 }
 
-.container .header {
+._container ._header {
     position: fixed;
     top: 0;
     right: 0;
@@ -105,30 +109,30 @@ td {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-.container .header .nav {
+._container ._header ._nav {
     width: 90%;
     display: flex;
     align-items: center;
 }
 
-.container .header .nav .search {
+._container ._header ._nav ._search {
     flex: 3;
     display: flex;
     justify-content: center;
 }
 
-.container .header .nav .search input[type=text] {
+._container ._header ._nav ._search input[type=text] {
     border: none;
     background: #f1f1f1;
     padding: 10px;
     width: 50%;
 }
 
-.container .header .nav .search button {
+._container ._header ._nav ._search button {
     width: 40px;
     height: 40px;
     border: none;
@@ -137,30 +141,30 @@ td {
     justify-content: center;
 }
 
-.container .header .nav .search button img {
+._container ._header ._nav ._search button img {
     width: 30px;
     height: 30px;
 }
 
-.container .header .nav .user {
+._container ._header ._nav .user {
     flex: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.container .header .nav .user img {
+._container ._header ._nav .user img {
     width: 40px;
     height: 40px;
 }
 
-.container .header .nav .user .img-case {
+._container ._header ._nav .user .img-case {
     position: relative;
     width: 50px;
     height: 50px;
 }
 
-.container .header .nav .user .img-case img {
+._container ._header ._nav .user .img-case img {
     position: absolute;
     top: 0;
     left: 0;
@@ -168,14 +172,14 @@ td {
     height: 100%;
 }
 
-.container .content {
+._container .content {
     position: relative;
     margin-top: 10vh;
     min-height: 90vh;
     background: #f1f1f1;
 }
 
-.container .content .cards {
+._container .content .cards {
     padding: 20px 15px;
     display: flex;
     align-items: center;
@@ -183,7 +187,7 @@ td {
     flex-wrap: wrap;
 }
 
-.container .content .cards .card {
+._container .content .cards .card {
     width: 250px;
     height: 150px;
     background: white;
@@ -194,7 +198,7 @@ td {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.container .content .content-2 {
+._container .content .content-2 {
     min-height: 60vh;
     display: flex;
     justify-content: space-around;
@@ -202,7 +206,7 @@ td {
     flex-wrap: wrap;
 }
 
-.container .content .content-2 .recent-payments {
+._container .content .content-2 .recent-payments {
     min-height: 50vh;
     flex: 5;
     background: white;
@@ -212,7 +216,7 @@ td {
     flex-direction: column;
 }
 
-.container .content .content-2 .new-students {
+._container .content .content-2 .new-students {
     flex: 2;
     background: white;
     min-height: 50vh;
@@ -222,32 +226,32 @@ td {
     flex-direction: column;
 }
 
-.container .content .content-2 .new-students table td:nth-child(1) img {
+._container .content .content-2 .new-students table td:nth-child(1) img {
     height: 40px;
     width: 40px;
 }
 
 @media screen and (max-width: 1050px) {
-.side-menu li {
+._side-menu li {
     font-size: 18px;
 }
 }
 
 @media screen and (max-width: 940px) {
-.side-menu li span {
+._side-menu li span {
     display: none;
 }
 
-.side-menu {
+._side-menu {
     align-items: center;
 }
 
-.side-menu li img {
+._side-menu li img {
     width: 40px;
     height: 40px;
 }
 
-.side-menu li:hover {
+._side-menu li:hover {
     background: #f05462;
     padding: 8px 38px;
     border: 2px solid white;
@@ -259,17 +263,74 @@ td {
         font-size: 16px;
     }
 
-    .container .content .cards {
+    ._container .content .cards {
         justify-content: center;
     }
 
-    .side-menu li img {
+    ._side-menu li img {
         width: 30px;
         height: 30px;
     }
 
-    .container .content .content-2 .recent-payments table th:nth-child(2),
-    .container .content .content-2 .recent-payments table td:nth-child(2) {
+    ._container .content .content-2 .recent-payments table th:nth-child(2),
+    ._container .content .content-2 .recent-payments table td:nth-child(2) {
         display: none;
     }
 }
+
+.brand-name{
+    background-color:white;
+}
+
+.row{
+    width: 100%;
+    height: inherit;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position:absolute;
+    top: 0;
+    left:0;
+    right:0;
+}
+
+.row .col-md-6 {
+    width: 80%;
+}
+
+.row form {
+    margin: 5px;
+}
+
+.row .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.row form .form-group input{
+    outline: none;
+    padding: 10px;
+    border: 1px solid #f05462;
+}
+
+.row form .form-group span{
+    color:#f05462;
+}
+
+.row form .form-group select{
+    padding: 10px;
+}
+
+.row form .form-group .btn{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+}
+
+.row form .form-group .btn:hover{
+    border: 1px solid #f05462;
+
+}
+

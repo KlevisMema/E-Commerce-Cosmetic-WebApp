@@ -43,10 +43,11 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Subject,Date,Email,Message")] ContactUs contactUs)
+        public async Task<IActionResult> Create([Bind("Id,Name,Subject,DateCreated,Email,Message")] ContactUs contactUs)
         {
             if (ModelState.IsValid)
             {
+                contactUs.DateCreated= DateTime.UtcNow;
                 contactUs.Id = Guid.NewGuid();
                 _context.Add(contactUs);
                 await _context.SaveChangesAsync();
@@ -83,6 +84,7 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
+                    contactUs.DateCreated = DateTime.UtcNow;
                     _context.Update(contactUs);
                     await _context.SaveChangesAsync();
                 }

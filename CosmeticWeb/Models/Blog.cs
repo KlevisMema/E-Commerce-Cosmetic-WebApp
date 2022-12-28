@@ -31,7 +31,12 @@ namespace CosmeticWeb.Models
         #endregion
 
         #region Data kur ky rekord u krijua
-        public DateTime? DateCreated { get; set; } = DateTime.Now;
+        public DateTime? DateCreated { get; set; }
         #endregion
+
+        #region Data kur ky rekord u modifikua
+        public DateTime? DateModified { get; set; }
+        #endregion
+
     }
 }

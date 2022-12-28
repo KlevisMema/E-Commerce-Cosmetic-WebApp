@@ -24,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\AdminPannelImages\" />
+    <Folder Include="wwwroot\CreatedProductsImages\" />
+    <Folder Include="wwwroot\BlogsImages\" />
   </ItemGroup>
 
 </Project>

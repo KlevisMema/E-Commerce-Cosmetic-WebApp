@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/AdminPannel.css">
+    <link rel="stylesheet" href="/css/TableStyles.css">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="_side-menu">
+        <div class="brand-name">
+            <a asp-action="Index" asp-controller="Admin" class="logo"> <img src="/Images/logo.png" /> </a>
+        </div>
+        <ul>
+            <li><img src="/AdminPannelImages/dashboard (2).png" alt="">&nbsp; <a asp-action="Index" asp-controller="Products"><span>PRODUCTS</span></a> </li>
+            <li><img src="/AdminPannelImages/reading-book (1).png" alt="">&nbsp;<a asp-action="Index" asp-controller="Categories"><span>CATEGORIES</span></a> </li>
+            <li><img src="/AdminPannelImages/teacher2.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>ORDERS</span></a> </li>
+            <li><img src="/AdminPannelImages/school.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>ORDER ITEMS</span></a> </li>
+            <li><img src="/AdminPannelImages/payment.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>SUBSCRIPTIONS</span></a> </li>
+            <li><img src="/AdminPannelImages/help-web-button.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>TESTIMONIALS</span></a></li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>WISHLISTS</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Blogs"><span>BLOGS</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="" asp-controller=""><span>CONTACTS</span></a> </li>
+        </ul>
+    </div>
+    <div class="_container">
+        <div class="_header">
+            <div class="_nav">
+                <div class="_search">
+                    <input type="text" placeholder="Search..">
+                    <button type="submit"><img src="/AdminPannelImages/search.png" alt=""></button>
+                </div>
+                <div class="user">
+                    <h3>Welcome Admin</h3>
+                    @*<a href="#" class="btn">Add New</a>
+                    <img src="/AdminPannelImages/notifications.png" alt="">*@
+                    <div class="img-case">
+                        <img src="/AdminPannelImages/user.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+     </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

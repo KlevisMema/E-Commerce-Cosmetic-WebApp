@@ -13,8 +13,22 @@ namespace CosmeticWeb.Models
         public Guid UserId { get; set; }
         #endregion
 
-        #region Lista me produkte 
-        public List<Product>? Products { get; set; }
+        #region Produkti 
+        #region Pathi i imazhit te produktit
+        public string? Image { get; set; }
+        #endregion
+        #region Emri produktit
+        public string? Name { get; set; }
+        #endregion
+        #region Cmimi produktit
+        public decimal Price { get; set; }
+        #endregion
+        #region Cmimi i meparshem i produktit
+        public decimal PreviousPrice { get; set; }
+        #endregion
+        #region Id e produktit
+        public Guid ProductId { get; set; }
+        #endregion
         #endregion
     }
 }
