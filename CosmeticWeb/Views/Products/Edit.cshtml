@@ -19,31 +19,31 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" placeholder="Name ..."/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control" placeholder="Price ..." />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
                 <label asp-for="PreviousPrice" class="control-label"></label>
-                <input asp-for="PreviousPrice" class="form-control" />
+                <input asp-for="PreviousPrice" class="form-control" placeholder="Previous price ..." />
                 <span asp-validation-for="PreviousPrice" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" placeholder="Description ..." />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
+                <input asp-for="Rating" class="form-control" placeholder="Rating ..." />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <br />
@@ -66,10 +66,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

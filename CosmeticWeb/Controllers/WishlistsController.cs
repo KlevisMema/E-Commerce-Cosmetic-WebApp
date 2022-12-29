@@ -19,23 +19,6 @@ namespace CosmeticWeb.Controllers
               return View(await _context.Wishlists.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null || _context.Wishlists == null)
-            {
-                return NotFound();
-            }
-
-            var wishlist = await _context.Wishlists
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (wishlist == null)
-            {
-                return NotFound();
-            }
-
-            return View(wishlist);
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -53,88 +36,6 @@ namespace CosmeticWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(wishlist);
-        }
-
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null || _context.Wishlists == null)
-            {
-                return NotFound();
-            }
-
-            var wishlist = await _context.Wishlists.FindAsync(id);
-            if (wishlist == null)
-            {
-                return NotFound();
-            }
-            return View(wishlist);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserId")] Wishlist wishlist)
-        {
-            if (id != wishlist.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(wishlist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!WishlistExists(wishlist.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(wishlist);
-        }
-
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null || _context.Wishlists == null)
-            {
-                return NotFound();
-            }
-
-            var wishlist = await _context.Wishlists
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (wishlist == null)
-            {
-                return NotFound();
-            }
-
-            return View(wishlist);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            if (_context.Wishlists == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Wishlists'  is null.");
-            }
-            var wishlist = await _context.Wishlists.FindAsync(id);
-            if (wishlist != null)
-            {
-                _context.Wishlists.Remove(wishlist);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool WishlistExists(Guid id)

@@ -40,7 +40,7 @@ function prev() {
 };
 
 var swiper = new Swiper(".products-slider", {
-    loop: true,
+    loop: false,
     grabCursor: true,
     spaceBetween: 20,
     navigation: {
@@ -64,7 +64,7 @@ var swiper = new Swiper(".products-slider", {
 });
 
 var swiper = new Swiper(".arrivals-slider", {
-    loop: true,
+    loop: false,
     grabCursor: true,
     spaceBetween: 20,
     navigation: {
@@ -88,7 +88,7 @@ var swiper = new Swiper(".arrivals-slider", {
 });
 
 var swiper = new Swiper(".reviews-slider", {
-    loop: true,
+    loop: false,
     grabCursor: true,
     spaceBetween: 20,
     breakpoints: {
@@ -105,7 +105,7 @@ var swiper = new Swiper(".reviews-slider", {
 });
 
 var swiper = new Swiper(".blogs-slider", {
-    loop: true,
+    loop: false,
     grabCursor: true,
     spaceBetween: 20,
     navigation: {

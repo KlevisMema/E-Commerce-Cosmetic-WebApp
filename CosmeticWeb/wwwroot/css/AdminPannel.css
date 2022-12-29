@@ -5,6 +5,18 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #f05462;
+}
+
 body {
     min-height: 100vh;
 }
@@ -31,13 +43,15 @@ h3 {
     color: white;
     padding: 5px 10px;
     text-align: center;
+    border: 2px solid #f05462;
+    transition: all ease-in-out 0.2s;
 }
 
 .btn:hover {
     color: #f05462;
     background: white;
-    padding: 3px 8px;
-    border: 2px solid #f05462;
+   /* padding: 3px 8px;*/
+    /*border: 2px solid #f05462;*/
 }
 
 .title {
@@ -324,13 +338,25 @@ td {
 
 .row form .form-group .btn{
     outline: none;
-    border: none;
     cursor: pointer;
     transition: all ease-in-out 0.2s;
 }
 
-.row form .form-group .btn:hover{
+.row form .form-group a {
+    padding: 9px 0px;
+    font-size: 15px;
     border: 1px solid #f05462;
+}
 
+.row form .form-group .btn:hover {
+    border: 1px solid #f05462;
+}
+
+.row form .form-group a:hover{
+
+}
+
+.btn-table{
+    border: 1px solid white;
 }
 

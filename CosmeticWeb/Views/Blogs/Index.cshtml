@@ -6,8 +6,6 @@
 }
 
 <div class="table-wrapper">
-    <a asp-action="Create" asp-controller="Blogs" class="btn">Create</a>
-    <br />
     <table class="fl-table">
         <thead>
             <tr>
@@ -23,7 +21,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.DateCreated)
                 </th>
-                <th></th>
+                <th>
+                    <a asp-action="Create" asp-controller="Blogs" class="btn btn-table">Create</a>
+                </th>
             </tr>
         </thead>
         <tbody>

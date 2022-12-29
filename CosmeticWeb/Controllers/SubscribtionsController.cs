@@ -19,23 +19,6 @@ namespace CosmeticWeb.Controllers
               return View(await _context.Subscribtions.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null || _context.Subscribtions == null)
-            {
-                return NotFound();
-            }
-
-            var subscribe = await _context.Subscribtions
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subscribe == null)
-            {
-                return NotFound();
-            }
-
-            return View(subscribe);
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -51,55 +34,7 @@ namespace CosmeticWeb.Controllers
                 subscribe.SubscribedAt = DateTime.UtcNow;
                 _context.Add(subscribe);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(subscribe);
-        }
-
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null || _context.Subscribtions == null)
-            {
-                return NotFound();
-            }
-
-            var subscribe = await _context.Subscribtions.FindAsync(id);
-            if (subscribe == null)
-            {
-                return NotFound();
-            }
-            return View(subscribe);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Email,SubscribedAt")] Subscribe subscribe)
-        {
-            if (id != subscribe.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    subscribe.SubscribedAt = DateTime.UtcNow;
-                    _context.Update(subscribe);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SubscribeExists(subscribe.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(subscribe);
         }

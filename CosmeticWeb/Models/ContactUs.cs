@@ -11,13 +11,11 @@ namespace CosmeticWeb.Models
 
         #region Emri i userit
         [Required(ErrorMessage = "Your name is required")]
-        [StringLength(maximumLength:4, MinimumLength = 20)]
         public string? Name { get; set; }
         #endregion
 
         #region Subjekti
         [Required(ErrorMessage = "Subject is required")]
-        [StringLength(maximumLength: 10, MinimumLength = 150)]
         public string? Subject { get; set; }
         #endregion
 
@@ -32,7 +30,6 @@ namespace CosmeticWeb.Models
         #endregion
 
         #region Mesazhi 
-        [StringLength(200, ErrorMessage = "You reached the limit of characters")]
         [Required(ErrorMessage = "Your message is required")]
         public string? Message { get; set; }
         #endregion

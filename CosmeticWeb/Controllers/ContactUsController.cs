@@ -19,23 +19,6 @@ namespace CosmeticWeb.Controllers
               return View(await _context.ContactUs.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null || _context.ContactUs == null)
-            {
-                return NotFound();
-            }
-
-            var contactUs = await _context.ContactUs
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (contactUs == null)
-            {
-                return NotFound();
-            }
-
-            return View(contactUs);
-        }
-
         public IActionResult Create()
         {
             return View();

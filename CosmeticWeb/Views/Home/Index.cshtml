@@ -1,103 +1,66 @@
-﻿@{
+﻿@model IEnumerable<CosmeticWeb.Models.Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <!-- home section starts  -->
-
 <section class="home" id="home">
 
-    <div class="slide active">
-        <div class="content">
-            <img src="./Images/content-img-1.png" alt="">
-            <span>new arrivals 2022</span>
-            <h3>cosmetics</h3>
-            <a href="#" class="btn">read more</a>
-            <div class="controls">
-                <div class="fas fa-angle-left" onclick="prev()"></div>
-                <div class="fas fa-angle-right" onclick="next()"></div>
+    @foreach (var item in ViewBag.FirstHomeSlider as List<HomeSlider>)
+    {
+        <div class="slide active">
+            <div class="content">
+                <img src="/HomeSliderImages/@item.Image" width="100px" height="100px" style="border-radius:50%">
+                <span>@item.Comment</span>
+                <h3>@item.Name</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="controls">
+                    <div class="fas fa-angle-left" onclick="prev()"></div>
+                    <div class="fas fa-angle-right" onclick="next()"></div>
+                </div>
+            </div>
+            <div class="image">
+                <img src="/HomeSliderImages/@item.Image" alt="">
             </div>
         </div>
-        <div class="image">
-            <img src="./Images/home-img-1.png" alt="">
-        </div>
-    </div>
+    }
 
-    <div class="slide">
-        <div class="content">
-            <img src="./Images/content-img-2.png" alt="">
-            <span>new arrivals 2022</span>
-            <h3>accessories</h3>
-            <a href="#" class="btn">read more</a>
-            <div class="controls">
-                <div class="fas fa-angle-left" onclick="prev()"></div>
-                <div class="fas fa-angle-right" onclick="next()"></div>
+    @foreach (var item in ViewBag.RestHomeSliders as List<HomeSlider>)
+    {
+        <div class="slide">
+            <div class="content">
+                <img src="/HomeSliderImages/@item.Image" width="100px" height="100px" style="border-radius:50%">
+                <span>@item.Comment</span>
+                <h3>@item.Name</h3>
+                <a href="#" class="btn">read more</a>
+                <div class="controls">
+                    <div class="fas fa-angle-left" onclick="prev()"></div>
+                    <div class="fas fa-angle-right" onclick="next()"></div>
+                </div>
+            </div>
+            <div class="image">
+                <img src="/HomeSliderImages/@item.Image">
             </div>
         </div>
-        <div class="image">
-            <img src="./Images/home-img-2.png" alt="">
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="content">
-            <img src="./Images/content-img-3.png" alt="">
-            <span>new collections</span>
-            <h3>skin care</h3>
-            <a href="#" class="btn">read more</a>
-            <div class="controls">
-                <div class="fas fa-angle-left" onclick="prev()"></div>
-                <div class="fas fa-angle-right" onclick="next()"></div>
-            </div>
-        </div>
-        <div class="image">
-            <img src="./Images/home-img-3.png" alt="">
-        </div>
-    </div>
+    }
 
 </section>
-
 <!-- home section ends -->
-
 <!-- category section starts  -->
-
 <section class="category">
 
-    <a href="#" class="box">
-        <img src="./Images/category-1.png" alt="">
-        <p>cosmetics</p>
-    </a>
-
-    <a href="#" class="box">
-        <img src="./Images/category-2.png" alt="">
-        <p>makeup</p>
-    </a>
-
-    <a href="#" class="box">
-        <img src="./Images/category-3.png" alt="">
-        <p>powder</p>
-    </a>
-
-    <a href="#" class="box">
-        <img src="./Images/category-4.png" alt="">
-        <p>lotions</p>
-    </a>
-
-    <a href="#" class="box">
-        <img src="./Images/category-5.png" alt="">
-        <p>lipstick</p>
-    </a>
-
-    <a href="#" class="box">
-        <img src="./Images/category-6.png" alt="">
-        <p>mascara</p>
-    </a>
+    @foreach (var item in ViewBag.Categories as List<Category>)
+    {
+        <a href="#" class="box">
+            <img src="/CategoryImages/@item.Image">
+            <p>@item.Name</p>
+        </a>
+    }
 
 </section>
-
 <!-- category section ends -->
-
 <!-- about section starts  -->
-
 <section class="about" id="about">
 
     <div class="content">
@@ -106,13 +69,10 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum explicabo, quos voluptate incidunt illo, blanditiis, accusamus ut quisquam quia sapiente iure. Rerum earum corrupti neque, nobis ratione obcaecati voluptatem fuga.</p>
         <a href="#" class="btn">read more</a>
     </div>
-    
+
 </section>
-
 <!-- about section ends -->
-
 <!-- shop section starts  -->
-
 <section class="shop" id="shop">
 
     <div class="heading">
@@ -124,189 +84,34 @@
 
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-1.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
+            @foreach (var item in ViewBag.Products as List<Product>)
+            {
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <span class="discount">-25%</span>
+                        <img src="/CreatedProductsImages/@item.Image" alt="">
+                        <div class="icons">
+                            <a href="#" class="fas fa-shopping-cart"></a>
+                            <a href="#" class="fas fa-heart"></a>
+                            <a href="#" class="fas fa-share"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            @for (var stars = 0; stars < item.Rating; stars++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                            @if (item.Rating % 1 > 0)
+                            {
+                                <i class="fas fa-star-half-alt"></i>
+                            }
+                        </div>
+                        <p>@item.Name</p>
+                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-2.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-3.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-4.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-5.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-6.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-7.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <span class="discount">-25%</span>
-                    <img src="./Images/product-8.jpg" alt="">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-share"></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                </div>
-            </div>
+            }
 
         </div>
 
@@ -316,9 +121,7 @@
     </div>
 
 </section>
-
 <!-- shop section ends -->
-
 <!-- gallery section starts  -->
 
 <section class="gallery" id="gallery">
@@ -340,7 +143,6 @@
 </section>
 
 <!-- gallery section ends -->
-
 <!-- team section starts  -->
 
 <section class="team" id="team">
@@ -403,11 +205,10 @@
     </div>
 
 </section>
-
 <!-- team section ends -->
 
-<!-- arrivals section starts  -->
 
+<!-- arrivals section starts  -->
 <section class="arrivals" id="arrivals">
 
     <div class="heading">
@@ -419,222 +220,68 @@
 
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-1.jpg" alt="">
+            @foreach (var item in  ViewBag.NewArrivals as List<Product>)
+            {
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/CreatedProductsImages/@item.Image" alt="">
+                    </div>
+                    <div class="content">
+                        <p>@item.Name</p>
+                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-2.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-3.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-4.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-5.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-6.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-7.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/arrival-8.jpg" alt="">
-                </div>
-                <div class="content">
-                    <p>beauty products</p>
-                    <div class="price">$49.99 <span>$79.99</span></div>
-                    <a href="#" class="btn">add to cart</a>
-                </div>
-            </div>
-
+            }
+            
         </div>
 
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
 
     </div>
-    
-</section>
 
+</section>
 <!-- arrivals section ends -->
 
-<!-- reviews section starts  -->
 
+<!-- reviews section starts  -->
 <section class="reviews">
 
     <div class="swiper reviews-slider">
 
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-1.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+            @foreach (var item in ViewBag.Testimonials as List<Testimonial>)
+            {
+                <div class="swiper-slide slide">
+                    <div class="user">
+                        <img src="/TestimonialsImages/@item.Image" alt="">
+                        <div class="info">
+                            <h3>@item.Name</h3>
+                            <div class="stars">
+                                @for (int i = 0; i < item.Rating; i++)
+                                {
+                                    <i class="fas fa-star"></i>
+                                }
+                                @*<i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>*@
+                            </div>
                         </div>
                     </div>
+                    <p class="text">@item.Description</p>
                 </div>
-                <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quis ipsa aspernatur incidunt iusto veniam cumque error quaerat officia. Aspernatur?</p>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-2.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum similique, numquam non, quasi, voluptatibus perspiciatis fugiat incidunt veniam nulla in aut aliquid necessitatibus nobis reiciendis ullam explicabo. Nulla, rem adipisci.</p>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-3.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit aliquid mollitia voluptatem alias illo officiis.</p>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-4.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quis ipsa aspernatur incidunt iusto veniam cumque error quaerat officia. Aspernatur?</p>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-5.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sequi minima sed obcaecati iste beatae quo praesentium, deleniti earum velit labore nobis voluptates a quam veniam delectus fugiat! Saepe, eos!</p>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="user">
-                    <img src="./Images/pic-6.png" alt="">
-                    <div class="info">
-                        <h3>john deo</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quis ipsa aspernatur incidunt iusto veniam cumque error quaerat officia. Aspernatur?</p>
-            </div>
+            }
 
         </div>
 
     </div>
 
 </section>
-
 <!-- reviews section ends  -->
+
 
 <!-- service section starts  -->
 
@@ -663,7 +310,6 @@
 <!-- service section ends -->
 
 <!-- blogs section starts  -->
-
 <section class="blogs" id="blogs">
 
     <div class="heading">
@@ -675,96 +321,24 @@
 
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-1.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
+            @foreach (var item in ViewBag.Blogs as List<Blog>)
+            {
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/BlogsImages/@item.Image" alt="">
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                            <a href="#"> <i class="fas fa-clock"></i> @DateTime.Parse(item.DateCreated.ToString()).ToString("dddd, dd MMMM yyyy")</a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h3>@item.Name</h3>
+                        <p>@item.Description</p>
+                        <a asp-action="" asp-controller="" asp-route-id="@item.Id" class="btn">read more</a>
                     </div>
                 </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-2.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-3.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-4.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-5.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="image">
-                    <img src="./Images/img-6.jpg" alt="">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
-                        <a href="#"> <i class="fas fa-clock"></i> 21st may, 2021 </a>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>blog title goes</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, debitis?</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
+            }
+            
         </div>
 
         <div class="swiper-button-next"></div>
@@ -773,5 +347,4 @@
     </div>
 
 </section>
-
 <!-- blogs section ends -->

@@ -25,7 +25,7 @@ namespace CosmeticWeb.Models
         #region Pershkrimi per vleresimin
         [Required(ErrorMessage = "Description is required")]
         [StringLength(maximumLength: 100, MinimumLength = 10)]
-        public int Description { get; set; }
+        public string? Description { get; set; }
         #endregion
 
         #region Imazhi i personit qe ben review

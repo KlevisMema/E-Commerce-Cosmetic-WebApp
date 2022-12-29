@@ -7,8 +7,6 @@
 }
 
 <div class="table-wrapper">
-    <a asp-action="Create" asp-controller="Products" class="btn">Create</a>
-    <br />
     <table class="fl-table">
         <thead>
             <tr>
@@ -20,7 +18,9 @@
                 <th>Created Date</th>
                 <th>Modified Date</th>
                 <th>Image</th>
-                <th>Actions</th>
+                <th>
+                    <a asp-action="Create" asp-controller="Products" class="btn btn-table">Create</a>
+                </th>
             </tr>
         </thead>
         <tbody>

@@ -18,6 +18,7 @@ namespace CosmeticWeb.Data
         public DbSet<Category>? Categories { get; set; }
         public DbSet<ContactUs>? ContactUs { get; set; }
         public DbSet<OrderItem>? OrderItems { get; set; }
+        public DbSet<HomeSlider>? homeSliders { get; set; }
         public DbSet<Subscribe>? Subscribtions { get; set; }
         public DbSet<Testimonial>? Testimonials { get; set; }
     }

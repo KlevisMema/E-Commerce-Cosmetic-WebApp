@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CosmeticWeb.Models
 {
@@ -21,6 +22,16 @@ namespace CosmeticWeb.Models
 
         #region Data kur kjo kategori eshte modifikuar
         public DateTime ModifiedAt { get; set; }
+        #endregion
+
+        #region Pathi i imazhit te kategorise
+        public string? Image { get; set; }
+        #endregion
+
+        #region File i imazhit, nuk ruhet ne database
+        [NotMapped]
+        [Required(ErrorMessage = "Image file is required")]
+        public IFormFile? ImageFile { get; set; }
         #endregion
 
         #region Property qe ben lidhjen me tablen Product, lidhje 1:M

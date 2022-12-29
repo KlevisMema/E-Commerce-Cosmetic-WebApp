@@ -19,23 +19,6 @@ namespace CosmeticWeb.Controllers
               return View(await _context.OrderItems.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.OrderItems == null)
-            {
-                return NotFound();
-            }
-
-            var orderItem = await _context.OrderItems
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (orderItem == null)
-            {
-                return NotFound();
-            }
-
-            return View(orderItem);
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -49,53 +32,6 @@ namespace CosmeticWeb.Controllers
             {
                 _context.Add(orderItem);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(orderItem);
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.OrderItems == null)
-            {
-                return NotFound();
-            }
-
-            var orderItem = await _context.OrderItems.FindAsync(id);
-            if (orderItem == null)
-            {
-                return NotFound();
-            }
-            return View(orderItem);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Price,Quantity,OrderId,ProductId")] OrderItem orderItem)
-        {
-            if (id != orderItem.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(orderItem);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderItemExists(orderItem.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
             return View(orderItem);
