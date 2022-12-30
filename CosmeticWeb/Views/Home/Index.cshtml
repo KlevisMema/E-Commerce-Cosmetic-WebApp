@@ -123,7 +123,6 @@
 </section>
 <!-- shop section ends -->
 <!-- gallery section starts  -->
-
 <section class="gallery" id="gallery">
 
     <div class="heading">
@@ -132,19 +131,15 @@
     </div>
 
     <div class="lightbox">
-        <a href="images/img-1.jpg"><img src="./Images/img-1.jpg" alt=""></a>
-        <a href="images/img-2.jpg"><img src="./Images/img-2.jpg" alt=""></a>
-        <a href="images/img-3.jpg"><img src="./Images/img-3.jpg" alt=""></a>
-        <a href="images/img-4.jpg"><img src="./Images/img-4.jpg" alt=""></a>
-        <a href="images/img-5.jpg"><img src="./Images/img-5.jpg" alt=""></a>
-        <a href="images/img-6.jpg"><img src="./Images/img-6.jpg" alt=""></a>
+        @foreach (var item in ViewBag.Gallery as List<Gallery>)
+        {
+            <a href="/GallerieImages/@item.Image"><img src="/GallerieImages/@item.Image" alt=""></a>
+        }
     </div>
 
 </section>
-
 <!-- gallery section ends -->
 <!-- team section starts  -->
-
 <section class="team" id="team">
 
     <div class="heading">
@@ -154,60 +149,49 @@
 
     <div class="box-container">
 
-        <div class="box">
-            <div class="image">
-                <img src="./Images/team-1.png" alt="">
-                <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
-                </div>
-            </div>
-            <div class="content">
-                <h3>sana shaikh</h3>
-                <p>make-up artist</p>
-            </div>
-        </div>
+        @foreach (var item in ViewBag.teamMembers as List<CosmeticTeamMember>)
+        {
+            <div class="box">
+                <div class="image">
+                    <img src="/CosmeticTeamMemberImages/@item.Image">
 
-        <div class="box">
-            <div class="image">
-                <img src="./Images/team-2.png" alt="">
-                <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
-                </div>
-            </div>
-            <div class="content">
-                <h3>sana shaikh</h3>
-                <p>make-up artist</p>
-            </div>
-        </div>
+                    <div class="share">
+                        @if (!String.IsNullOrEmpty(item.Facebook))
+                        {
+                            <a href="@item.Facebook" class="fab fa-facebook-f"></a>
+                        }
 
-        <div class="box">
-            <div class="image">
-                <img src="./Images/team-3.png" alt="">
-                <div class="share">
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
+                        @if (!String.IsNullOrEmpty(item.Twitter))
+                        {
+                            <a href="@item.Twitter" class="fab fa-twitter"></a>
+
+                        }
+
+                        @if (!String.IsNullOrEmpty(item.Instagram))
+                        {
+                            <a href="@item.Instagram" class="fab fa-instagram"></a>
+
+                        }
+
+                        @if (!String.IsNullOrEmpty(item.Linkedin))
+                        {
+                            <a href="@item.Linkedin" class="fab fa-linkedin"></a>
+
+                        }
+                    </div>
+
+                </div>
+                <div class="content">
+                    <h3>@item.Name</h3>
+                    <p>@item.Role</p>
                 </div>
             </div>
-            <div class="content">
-                <h3>sana shaikh</h3>
-                <p>make-up artist</p>
-            </div>
-        </div>
+        }
 
     </div>
 
 </section>
 <!-- team section ends -->
-
-
 <!-- arrivals section starts  -->
 <section class="arrivals" id="arrivals">
 
@@ -220,7 +204,7 @@
 
         <div class="swiper-wrapper">
 
-            @foreach (var item in  ViewBag.NewArrivals as List<Product>)
+            @foreach (var item in ViewBag.NewArrivals as List<Product>)
             {
                 <div class="swiper-slide slide">
                     <div class="image">
@@ -233,7 +217,7 @@
                     </div>
                 </div>
             }
-            
+
         </div>
 
         <div class="swiper-button-next"></div>
@@ -243,8 +227,6 @@
 
 </section>
 <!-- arrivals section ends -->
-
-
 <!-- reviews section starts  -->
 <section class="reviews">
 
@@ -265,9 +247,9 @@
                                     <i class="fas fa-star"></i>
                                 }
                                 @*<i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>*@
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>*@
                             </div>
                         </div>
                     </div>
@@ -281,10 +263,7 @@
 
 </section>
 <!-- reviews section ends  -->
-
-
 <!-- service section starts  -->
-
 <section class="service">
 
     <div class="box">
@@ -306,9 +285,7 @@
     </div>
 
 </section>
-
 <!-- service section ends -->
-
 <!-- blogs section starts  -->
 <section class="blogs" id="blogs">
 
@@ -338,7 +315,7 @@
                     </div>
                 </div>
             }
-            
+
         </div>
 
         <div class="swiper-button-next"></div>

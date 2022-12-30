@@ -25,6 +25,8 @@ namespace CosmeticWeb.Controllers
             var restHomeSlider =  await _context.homeSliders.Skip(1).ToListAsync();
             var testimonials =  await _context.Testimonials.ToListAsync();
             var blogs =  await _context.Blogs.ToListAsync();
+            var galerieImages =  await _context.Galleries.ToListAsync();
+            var teamMembers =  await _context.CosmeticTeamMembers.ToListAsync();
 
             ViewBag.Products = products;
             ViewBag.NewArrivals = newArrivals;
@@ -33,6 +35,8 @@ namespace CosmeticWeb.Controllers
             ViewBag.RestHomeSliders = restHomeSlider;
             ViewBag.Testimonials = testimonials;
             ViewBag.Blogs = blogs;
+            ViewBag.Gallery = galerieImages;
+            ViewBag.TeamMembers = teamMembers;
 
             return View();
         }

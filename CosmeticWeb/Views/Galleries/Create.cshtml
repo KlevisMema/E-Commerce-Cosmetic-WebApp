@@ -1,4 +1,4 @@
-﻿@model CosmeticWeb.Models.Category
+﻿@model CosmeticWeb.Models.Gallery
 
 @{
     ViewData["Title"] = "Create";
@@ -7,19 +7,16 @@
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Create a new category</h2>
+        <h2>Add a new photo in gallery</h2>
         <br />
+        <div class="image-container">
+            <img id="img2" src="" width="200px" />
+        </div>
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" placeholder="Category name ..." />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" accept="image/*" placeholder="Image ..." />
+                <input asp-for="ImageFile" class="form-control"  accept="image*/" onchange="loadImage(event)" id="imgfile" placeholder="Image ..." />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <br />
@@ -36,4 +33,13 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        var loadImage = function (event) {
+            var arr = document.getElementById("arr");
+            var image = document.getElementById('img2');
+            image.style.width = "400px";
+            image.src = URL.createObjectURL(event.target.files[0]);
+            arr.style.display = "block";
+        }
+    </script>
 }

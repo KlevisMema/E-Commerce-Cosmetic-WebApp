@@ -1,4 +1,4 @@
-﻿@model CosmeticWeb.Models.Category
+﻿@model CosmeticWeb.Models.Gallery
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,13 +9,14 @@
     <div class="col-md-6">
         <h2>Are you sure you want to delete?</h2>
         <br />
+        <img src="/GallerieImages/@Model.Image" width="300px" />
         <br />
         <form asp-action="Delete">
             <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" readonly />
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" readonly />
             </div>
             <br />
             <div class="form-group">

@@ -43,9 +43,7 @@ namespace CosmeticWeb.Controllers
                 string path = Path.Combine(wwwRootPath + "/CreatedProductsImages", fileName);
 
                 using (var fileSteam = new FileStream(path, FileMode.Create))
-                {
                     await product.ImageFile.CopyToAsync(fileSteam);
-                }
 
                 product.Id = Guid.NewGuid();
                 product.CreatedAt = DateTime.UtcNow;
@@ -79,22 +77,18 @@ namespace CosmeticWeb.Controllers
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,PreviousPrice,Description,Rating,CreatedAt,ModifiedAt,ImageFile,CategoryId")] Product product)
         {
             if (id != product.Id)
-            {
                 return NotFound();
-            }
-
-            Product previousPath = await _context.Products.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var previousPath = await _context.Products.FirstOrDefaultAsync(x => x.Id.Equals(id));
+
                     var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", previousPath.Image);
 
                     if (System.IO.File.Exists(imagePath))
-                    {
                         System.IO.File.Delete(imagePath);
-                    }
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
                     string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
@@ -103,9 +97,7 @@ namespace CosmeticWeb.Controllers
                     string path = Path.Combine(wwwRootPath + "/CreatedProductsImages", fileName);
 
                     using (var fileSteam = new FileStream(path, FileMode.Create))
-                    {
                         await product.ImageFile.CopyToAsync(fileSteam);
-                    }
 
                     product.ModifiedAt = DateTime.Now;
                     _context.Entry(previousPath).CurrentValues.SetValues(product);
@@ -114,13 +106,9 @@ namespace CosmeticWeb.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProductExists(product.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -151,9 +139,7 @@ namespace CosmeticWeb.Controllers
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Products == null)
-            {
                 return Problem("Entity set 'ApplicationDbContext.Products'  is null.");
-            }
 
             var product = await _context.Products.FindAsync(id);
 
@@ -162,14 +148,13 @@ namespace CosmeticWeb.Controllers
                 var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", product.Image);
 
                 if (System.IO.File.Exists(imagePath))
-                {
                     System.IO.File.Delete(imagePath);
-                }
 
                 _context.Products.Remove(product);
             }
 
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

@@ -1,0 +1,61 @@
+﻿@model CosmeticWeb.Models.Gallery
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminPannel.cshtml";
+}
+
+<style>
+    .image-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #arr {
+        display: none;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <h2>Edit</h2>
+            <br />
+            <div class="image-container">
+                <img src="/GallerieImages/@Model.Image" width="200px" />
+                <h1 id="arr">&rarr;</h1>
+                <img id="img2" src="" width="200px" />
+            </div>
+            <br />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <br />
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" accept="image*/" onchange="loadImage(event)" id="imgfile" placeholder="Image . ..." />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <br />
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        var loadImage = function (event) {
+            var arr = document.getElementById("arr");
+            var image = document.getElementById('img2');
+            image.style.width = "400px";
+            image.src = URL.createObjectURL(event.target.files[0]);
+            arr.style.display = "block";
+        }
+    </script>
+}

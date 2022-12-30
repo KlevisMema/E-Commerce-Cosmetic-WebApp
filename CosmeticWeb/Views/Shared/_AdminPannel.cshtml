@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/AdminPannel.css">
     <link rel="stylesheet" href="/css/TableStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -15,16 +18,20 @@
             <a asp-action="Index" asp-controller="Admin" class="logo"> <img src="/Images/logo.png" /> </a>
         </div>
         <ul>
-            <li><img src="/AdminPannelImages/dashboard (2).png" alt="">&nbsp; <a asp-action="Index" asp-controller="Products"><span>PRODUCTS</span></a> </li>
-            <li><img src="/AdminPannelImages/reading-book (1).png" alt="">&nbsp;<a asp-action="Index" asp-controller="Categories"><span>CATEGORIES</span></a> </li>
+           
             <li><img src="/AdminPannelImages/teacher2.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Orders"><span>ORDERS</span></a> </li>
             <li><img src="/AdminPannelImages/school.png" alt="">&nbsp;<a asp-action="Index" asp-controller="OrderItems"><span>ORDER ITEMS</span></a> </li>
             <li><img src="/AdminPannelImages/payment.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Subscribtions"><span>SUBSCRIPTIONS</span></a> </li>
             <li><img src="/AdminPannelImages/help-web-button.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Testimonials"><span>TESTIMONIALS</span></a></li>
-            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Wishlists"><span>WISHLISTS</span></a> </li>
-            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Blogs"><span>BLOGS</span></a> </li>
-            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="ContactUs"><span>CONTACTS</span></a> </li>
-            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="HomeSliders"><span>Home Slider</span></a> </li>
+            <li><a asp-action="Index" asp-controller="Wishlists"  class="fas fa-heart"></a>&nbsp;<a asp-action="Index" asp-controller="Wishlists"><span>WISHLISTS</span></a> </li>
+            <li><a asp-action="Index" asp-controller="Blogs" class="fas fa-solid fa-blog"></a>&nbsp;<a asp-action="Index" asp-controller="Blogs"><span>BLOGS</span></a> </li>
+            <li><a asp-action="Index" asp-controller="ContactUs" class="fas fa-solid fa-address-book"></a>&nbsp;<a asp-action="Index" asp-controller="ContactUs"><span>CONTACTS</span></a> </li>
+            <hr style="color:white;border:1px solid #fff;outline:none;"/>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp; <a asp-action="Index" asp-controller="Products"><span>PRODUCTS</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Categories"><span>CATEGORIES</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="HomeSliders"><span>HOME SLIDER</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="CosmeticTeamMembers"><span>TEAM MEMBERS</span></a> </li>
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Galleries"><span>GALLERY</span></a> </li>
         </ul>
     </div>
     <div class="_container">
@@ -45,9 +52,7 @@
             </div>
         </div>
         @RenderBody()
-     </div>
-
-
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

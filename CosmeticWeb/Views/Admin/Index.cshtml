@@ -1,132 +1,113 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity;
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminPannel.cshtml";
 }
 
+<style>
+    .recent-payments table tbody tr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    .new-students table tbody tr {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+</style>
+
 <div class="content">
+
     <div class="cards">
+
         <div class="card">
             <div class="box">
-                <h1>2194</h1>
-                <h3>Students</h3>
+                <h1>@ViewBag.Users</h1>
+                <h3>Users</h3>
             </div>
             <div class="icon-case">
                 <img src="/AdminPannelImages/students.png" alt="">
             </div>
         </div>
+
         <div class="card">
             <div class="box">
-                <h1>53</h1>
-                <h3>Teachers</h3>
+                <h1>@ViewBag.Employees</h1>
+                <h3>Employees</h3>
             </div>
             <div class="icon-case">
                 <img src="/AdminPannelImages/teachers.png" alt="">
             </div>
         </div>
+
         <div class="card">
             <div class="box">
-                <h1>5</h1>
-                <h3>Schools</h3>
+                <h1>@ViewBag.Subtitles</h1>
+                <h3>Subsrciptions</h3>
             </div>
             <div class="icon-case">
                 <img src="/AdminPannelImages/schools.png" alt="">
             </div>
         </div>
+
         <div class="card">
             <div class="box">
-                <h1>350000</h1>
+                <h1>@ViewBag.Income</h1>
                 <h3>Income</h3>
             </div>
             <div class="icon-case">
                 <img src="/AdminPannelImages/income.png" alt="">
             </div>
         </div>
+
     </div>
+
     <div class="content-2">
+
         <div class="recent-payments">
             <div class="title">
                 <h2>Recent Payments</h2>
-                <a href="#" class="btn">View All</a>
+                <a asp-action="Index" asp-controller="OrderItems" class="btn">View All</a>
             </div>
             <table>
                 <tr>
-                    <th>Name</th>
-                    <th>School</th>
-                    <th>Amount</th>
-                    <th>Option</th>
+                    <th>Product Name</th>
+                    <th>Customer Name</th>
+                    <th>Price</th>
                 </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>St. James College</td>
-                    <td>$120</td>
-                    <td><a href="#" class="btn">View</a></td>
-                </tr>
+                @foreach (var item in ViewBag.RecentOrders as List<OrderItem>)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Order.CustomerName</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
             </table>
         </div>
+
         <div class="new-students">
             <div class="title">
-                <h2>New Students</h2>
+                <h2>New Users</h2>
                 <a href="#" class="btn">View All</a>
             </div>
             <table>
                 <tr>
                     <th>Profile</th>
                     <th>Name</th>
-                    <th>option</th>
                 </tr>
-                <tr>
-                    <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                    <td>John Steve Doe</td>
-                    <td><img src="/AdminPannelImages/info.png" alt=""></td>
-                </tr>
-                <tr>
-                    <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                    <td>John Steve Doe</td>
-                    <td><img src="/AdminPannelImages/info.png" alt=""></td>
-                </tr>
-                <tr>
-                    <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                    <td>John Steve Doe</td>
-                    <td><img src="/AdminPannelImages/info.png" alt=""></td>
-                </tr>
-                <tr>
-                    <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                    <td>John Steve Doe</td>
-                    <td><img src="/AdminPannelImages/info.png" alt=""></td>
-                </tr>
-
+                @foreach (var item in ViewBag.Recentusers as List<IdentityUser>)
+                {
+                    <tr>
+                        <td><img src="/AdminPannelImages/user.png" alt=""></td>
+                        <td>@item.UserName</td>
+                    </tr>
+                }
             </table>
         </div>
+
     </div>
 </div>

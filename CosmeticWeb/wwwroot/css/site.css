@@ -873,11 +873,13 @@ section {
 }
 
 .footer .box-container {
-    display: -ms-grid;
+    /* display: -ms-grid;
     display: grid;
     -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    gap: 2rem;
+    gap: 2rem;*/
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer .box-container .box h3 {
@@ -1084,4 +1086,9 @@ section {
 
 .register p a {
     color: #f05462;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
 }

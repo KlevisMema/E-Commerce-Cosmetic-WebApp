@@ -37,7 +37,7 @@ namespace CosmeticWeb.Controllers
             return View(orderItem);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.OrderItems == null)
             {
@@ -45,7 +45,7 @@ namespace CosmeticWeb.Controllers
             }
 
             var orderItem = await _context.OrderItems
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id.Equals(id));
             if (orderItem == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.OrderItems == null)
             {
@@ -74,7 +74,7 @@ namespace CosmeticWeb.Controllers
 
         private bool OrderItemExists(int id)
         {
-          return _context.OrderItems.Any(e => e.Id == id);
+          return _context.OrderItems.Any(e => e.Id.Equals(id));
         }
     }
 }

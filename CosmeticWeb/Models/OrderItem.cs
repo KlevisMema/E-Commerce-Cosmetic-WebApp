@@ -6,7 +6,7 @@ namespace CosmeticWeb.Models
     {
         #region Id e order item
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         #endregion
 
         #region Cimimi
@@ -18,12 +18,12 @@ namespace CosmeticWeb.Models
         #endregion
 
         #region Id e Orderit, lidhja me tabelen Order
-        public int OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public Order? Order { get; set; }
         #endregion
 
         #region Id e produktit, lidhja me tabelen e product
-        public int ProductId { get; set; }
+        public Guid? ProductId { get; set; }
         public Product? Product { get; set; }
         #endregion
     }
