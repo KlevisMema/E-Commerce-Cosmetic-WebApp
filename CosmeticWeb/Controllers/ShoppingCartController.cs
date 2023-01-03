@@ -16,20 +16,21 @@ namespace CosmeticWeb.Controllers
             _context = context;
         }
 
+
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+            //var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
 
-            var cartVM = new CartViewModel
-            {
-                CartItems = cart,
-                GrandTotal = cart.Sum(x => x.Price * x.Quantity)
-            };
+            //var cartVM = new CartViewModel
+            //{
+            //    CartItems = cart,
+            //    GrandTotal = cart.Sum(x => x.Price * x.Quantity)
+            //};
 
-            ViewData["grand_total"] = cartVM.GrandTotal;
+            //ViewData["grand_total"] = cartVM.GrandTotal;
 
-            return View(cartVM);
+            return View(/*cartVM*/);
         }
 
         [AllowAnonymous]

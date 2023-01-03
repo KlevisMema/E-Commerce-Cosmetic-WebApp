@@ -2,57 +2,44 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminPannel.cshtml";
 }
 
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th> 
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th> 
-                <th>
-                    @Html.DisplayNameFor(model => model.PreviousPrice)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
+<!-- shop section starts  -->
+<section class="shop" id="shop">
+
+    <div class="heading">
+        <h1>Wish list</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur officia beatae distinctio minus optio?</p>
+    </div>
+
+    <div class="swiper products-slider">
+
+        <div class="swiper-wrapper">
+
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @item.UserId
-                    </td>
-                    <td>
-                        @item.ProductId
-                    </td>
-                    <td>
-                        @item.Image
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.Price
-                    </td> 
-                    <td>
-                        @item.PreviousPrice
-                    </td>
-                </tr>
+                <input type="text" hidden id="productId" value="@item.Id" />
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <span class="discount">-25%</span>
+                        <img src="/CreatedProductsImages/@item.Image" alt="">
+                        <div class="icons">
+                            <a href="#" class="fas fa-shopping-cart"></a>
+                            <a class="fas fa-solid fa-trash" id="wishlist" asp-action="Remove" asp-controller="Wishlists" asp-route-id="@item.ProductId"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p>@item.Name</p>
+                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                    </div>
+                </div>
             }
-        <tbody>
-    </table>
-</div>
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>

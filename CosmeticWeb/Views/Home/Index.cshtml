@@ -93,9 +93,8 @@
                         <img src="/CreatedProductsImages/@item.Image" alt="">
                         <div class="icons">
                             <a href="#" class="fas fa-shopping-cart"></a>
-                            <a class="fas fa-heart" id="wishlist">
+                            <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id">
                             </a>
-                            <a href="#" class="fas fa-share"></a>
                         </div>
                     </div>
                     <div class="content">
@@ -327,21 +326,3 @@
 
 </section>
 <!-- blogs section ends -->
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
-
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#wishlist").click(function () {
-            var ProductId = document.getElementById("productId").value
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("Create","Wishlists")",
-                data: { productId : ProductId }
-            })
-        })
-    })
-</script>

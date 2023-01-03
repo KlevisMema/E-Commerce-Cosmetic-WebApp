@@ -5,10 +5,16 @@
 <div class="icons">
     @if (SignInManager.IsSignedIn(User))
     {
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @*@User.Identity?.Name!*@</a>
+       @* <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
+
+        </form>*@
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search"></div>
+        <a asp-action="Index" asp-controller="Wishlists" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+
     }
     else
     {
