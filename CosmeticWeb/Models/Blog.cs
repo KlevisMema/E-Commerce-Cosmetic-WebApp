@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CosmeticWeb.Helpers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CosmeticWeb.Models
@@ -26,6 +27,7 @@ namespace CosmeticWeb.Models
         public string? Image { get; set; }
 
         [NotMapped]
+        [ImageFileValidation]
         [Required(ErrorMessage = "Image is required!")]
         public IFormFile? ImageFile { get; set; }
         #endregion

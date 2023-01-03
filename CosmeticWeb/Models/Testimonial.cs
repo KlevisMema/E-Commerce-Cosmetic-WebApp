@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CosmeticWeb.Helpers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CosmeticWeb.Models
@@ -34,6 +35,7 @@ namespace CosmeticWeb.Models
 
         #region File imazhi i personit qe ben review nuk ruhet ne database
         [NotMapped]
+        [ImageFileValidation]
         [Required(ErrorMessage = "Image file is required")]
         public IFormFile? ImageFile { get; set; }
         #endregion

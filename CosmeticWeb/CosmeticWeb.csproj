@@ -24,14 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\AdminPannelImages\" />
     <Folder Include="wwwroot\CreatedProductsImages\" />
     <Folder Include="wwwroot\BlogsImages\" />
     <Folder Include="wwwroot\CategoryImages\" />
-    <Folder Include="wwwroot\HomeSliderImages\" />
     <Folder Include="wwwroot\GallerieImages\" />
-    <Folder Include="wwwroot\CosmeticTeamMemberImages\" />
     <Folder Include="wwwroot\TestimonialsImages\" />
   </ItemGroup>
 

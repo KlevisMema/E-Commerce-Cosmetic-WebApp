@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CosmeticWeb.Helpers;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,6 +31,7 @@ namespace CosmeticWeb.Models
         #region Pathi imazhit dhe file imazhi
         public string? Image { get; set; }
         [NotMapped]
+        [ImageFileValidation]
         [Required(ErrorMessage = "Image is required")]
         public IFormFile? ImageFile { get; set; }
         #endregion
