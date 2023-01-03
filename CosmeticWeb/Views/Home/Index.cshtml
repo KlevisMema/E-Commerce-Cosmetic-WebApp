@@ -86,13 +86,15 @@
 
             @foreach (var item in ViewBag.Products as List<Product>)
             {
+                <input type="text" hidden id="productId" value="@item.Id" />
                 <div class="swiper-slide slide">
                     <div class="image">
                         <span class="discount">-25%</span>
                         <img src="/CreatedProductsImages/@item.Image" alt="">
                         <div class="icons">
                             <a href="#" class="fas fa-shopping-cart"></a>
-                            <a href="#" class="fas fa-heart"></a>
+                            <a class="fas fa-heart" id="wishlist">
+                            </a>
                             <a href="#" class="fas fa-share"></a>
                         </div>
                     </div>
@@ -325,3 +327,21 @@
 
 </section>
 <!-- blogs section ends -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#wishlist").click(function () {
+            var ProductId = document.getElementById("productId").value
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create","Wishlists")",
+                data: { productId : ProductId }
+            })
+        })
+    })
+</script>
