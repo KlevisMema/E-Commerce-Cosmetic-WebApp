@@ -3,6 +3,7 @@ using CosmeticWeb.Helpers;
 using CosmeticWeb.Models;
 using CosmeticWeb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
@@ -20,28 +21,30 @@ namespace CosmeticWeb.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            //var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart") ?? new List<CartItemViewModel>();
 
-            //var cartVM = new CartViewModel
-            //{
-            //    CartItems = cart,
-            //    GrandTotal = cart.Sum(x => x.Price * x.Quantity)
-            //};
+            var cartVM = new CartViewModel
+            {
+                CartItems = cart,
+                GrandTotal = cart.Sum(x => x.Price * x.Quantity)
+            };
 
-            //ViewData["grand_total"] = cartVM.GrandTotal;
+            ViewData["grand_total"] = cartVM.GrandTotal;
 
-            return View(/*cartVM*/);
+            return View(cartVM);
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Add(int id, int quantity)
+        public async Task<IActionResult> Add(Guid id, int quantity)
         {
-            var product = await _context.Products.FindAsync(id);
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart") ?? new List<CartItemViewModel>();
+            var product = await _context.Products!.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
+
+            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart") ?? new List<CartItemViewModel>();
+
             var cartItem = cart.Where(x => x.ProductId.Equals(id)).FirstOrDefault();
 
             if (cartItem == null)
-                cart.Add(new CartItemViewModel(product, quantity));
+                cart.Add(new CartItemViewModel(product!, quantity));
             else
             {
                 if (quantity == 0)
@@ -50,42 +53,42 @@ namespace CosmeticWeb.Controllers
                     cartItem.Quantity += quantity;
             }
 
-            HttpContext.Session.SetJson("Cart", cart);
+            HttpContext.Session.SetJson("ShoppingCart", cart);
 
             return RedirectToAction("Index");
         }
 
         [AllowAnonymous]
-        public IActionResult Decrease(int id)
+        public IActionResult Decrease(Guid id)
         {
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart");
+            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
 
-            var cartItem = cart.Where(x => x.ProductId.Equals(id)).FirstOrDefault();
+            var cartItem = cart!.Where(x => x.ProductId.Equals(id)).FirstOrDefault();
 
-            if (cartItem.Quantity > 1)
+            if (cartItem!.Quantity > 1)
                 --cartItem.Quantity;
             else
-                cart.RemoveAll(x => x.ProductId.Equals(id));
+                cart!.RemoveAll(x => x.ProductId.Equals(id));
 
-            if (cart.Count == 0)
-                HttpContext.Session.Remove("Cart");
+            if (cart!.Count == 0)
+                HttpContext.Session.Remove("ShoppingCart");
             else
-                HttpContext.Session.SetJson("Cart", cart);
+                HttpContext.Session.SetJson("ShoppingCart", cart!);
 
             return RedirectToAction("Index");
         }
 
         [AllowAnonymous]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(Guid id)
         {
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart");
+            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
 
-            cart.RemoveAll(x => x.ProductId.Equals(id));
+            cart!.RemoveAll(x => x.ProductId.Equals(id));
 
             if (cart.Count == 0)
-                HttpContext.Session.Remove("Cart");
+                HttpContext.Session.Remove("ShoppingCart");
             else
-                HttpContext.Session.SetJson("Cart", cart);
+                HttpContext.Session.SetJson("ShoppingCart", cart);
 
             return RedirectToAction("Index");
         }
@@ -93,57 +96,62 @@ namespace CosmeticWeb.Controllers
         [AllowAnonymous]
         public IActionResult Clear()
         {
-            HttpContext.Session.Remove("Cart");
+            HttpContext.Session.Remove("ShoppingCart");
 
-            if (HttpContext.Request.Headers["X-Requested-With"] != "XMLHttpRequest")
-                return Redirect(Request.Headers["Referer"].ToString());
-
-            return Ok();
+            return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ProccedToCheckout()
         {
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart");
+            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
 
-            ViewData["grand_total"] = cart.Sum(x => x.Price * x.Quantity);
+            ViewData["grand_total"] = cart!.Sum(x => x.Price * x.Quantity);
 
-            return View("CheckOutCompleted");
+            return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public IActionResult ProccedToCheckout(IFormCollection frm_coll)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ProccedToCheckout(ProceedCheckOutViewModel checkOut)
         {
-            var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("Cart");
-
-            var order = new Order()
+            if (ModelState.IsValid)
             {
-                CustomerName = frm_coll["Name"],
-                CustomerPhone = frm_coll["Phone"],
-                CustomerEmail = frm_coll["Email"],
-                CustomerAddress = frm_coll["Adress"]
-            };
+                var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
 
-            _context.Orders.Add(order);
-            _context.SaveChanges();
-
-            foreach (var stCart in cart)
-            {
-                OrderItem orderDetail = new OrderItem()
+                var order = new Order()
                 {
-                    OrderId = order.Id,
-                    ProductId = stCart.ProductId,
-                    Quantity = stCart.Quantity,
-                    Price = stCart.Price
+                    CustomerName = checkOut.Name,
+                    CustomerPhone = checkOut.PhoneNumber,
+                    CustomerEmail = checkOut.Email,
+                    CustomerAddress = checkOut.Address,
+                    CreatedDate = DateTime.Now
                 };
-                _context.OrderItems.Add(orderDetail);
-                _context.SaveChanges();
-            }
-            HttpContext.Session.Remove("Cart");
 
-            return RedirectToAction("ThankYou");
+                _context.Orders!.Add(order);
+                _context.SaveChanges();
+
+                foreach (var stCart in cart!)
+                {
+                    OrderItem orderDetail = new OrderItem()
+                    {
+                        OrderId = order.Id,
+                        ProductId = stCart.ProductId,
+                        Quantity = stCart.Quantity,
+                        Price = stCart.Price
+                    };
+
+                    _context.OrderItems!.Add(orderDetail);
+                    _context.SaveChanges();
+                }
+
+                HttpContext.Session.Remove("ShoppingCart");
+
+                return RedirectToAction("ThankYou");
+            }
+            return View();
         }
 
         [AllowAnonymous]

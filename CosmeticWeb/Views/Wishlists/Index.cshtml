@@ -4,38 +4,55 @@
     ViewData["Title"] = "Index";
 }
 
-<!-- shop section starts  -->
+<style>
+    .empty-wishList{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #dc3545;
+    }
+</style>
+
 <section class="shop" id="shop">
 
     <div class="heading">
         <h1>Wish list</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur officia beatae distinctio minus optio?</p>
     </div>
 
     <div class="swiper products-slider">
+        @if(Model.Count() == 0)
+        {
+            <div class="empty-wishList">
+                <h1>Wish List Empty</h1>
+            </div>
+        }
+        else
+        {
+            <div class="swiper-wrapper">
 
-        <div class="swiper-wrapper">
-
-            @foreach (var item in Model)
-            {
-                <input type="text" hidden id="productId" value="@item.Id" />
-                <div class="swiper-slide slide">
-                    <div class="image">
-                        <span class="discount">-25%</span>
-                        <img src="/CreatedProductsImages/@item.Image" alt="">
-                        <div class="icons">
-                            <a href="#" class="fas fa-shopping-cart"></a>
-                            <a class="fas fa-solid fa-trash" id="wishlist" asp-action="Remove" asp-controller="Wishlists" asp-route-id="@item.ProductId"></a>
+                @foreach (var item in Model)
+                {
+                    <input type="text" hidden id="productId" value="@item.Id" />
+                    <div class="swiper-slide slide">
+                        <div class="image">
+                            <span class="discount">-25%</span>
+                            <img src="/CreatedProductsImages/@item.Image" alt="">
+                            <div class="icons">
+                                <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.ProductId"></a>
+                                <a class="fas fa-solid fa-trash" id="wishlist" asp-action="Remove" asp-controller="Wishlists" asp-route-id="@item.ProductId"></a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>@item.Name</p>
+                            <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
                         </div>
                     </div>
-                    <div class="content">
-                        <p>@item.Name</p>
-                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
-                    </div>
-                </div>
-            }
+                }
+            </div>
 
-        </div>
+        }
 
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>

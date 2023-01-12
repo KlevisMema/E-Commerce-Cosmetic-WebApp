@@ -1,0 +1,32 @@
+﻿@model CosmeticWeb.ViewModels.ProceedCheckOutViewModel
+
+@{
+    ViewData["Title"] = "ProccedToCheckout";
+}
+
+<div class="shopping-cart shopping-cart-Form">
+
+    <div class="title">
+        Check Out
+    </div>
+
+    <div class="item itemCheckOut">
+
+        <form asp-action="ProccedToCheckout" asp-controller="ShoppingCart" method="post">
+
+            <input type="text" asp-for="Name" placeholder="Name" autocomplete="on" required/>
+
+            <input type="email" asp-for="Email" placeholder="Email" autocomplete="on" required />
+
+            <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" autocomplete="on" required />
+
+            <input type="text" asp-for="Address" placeholder="Adress" autocomplete="on" required />
+
+            <input type="submit" value="Check Out" class="btn btn-default" />
+
+            <a asp-action="Index" class="btn" >Go back</a>
+
+        </form>
+    </div>
+
+</div>

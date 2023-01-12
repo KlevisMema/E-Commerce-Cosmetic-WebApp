@@ -92,9 +92,8 @@
                         <span class="discount">-25%</span>
                         <img src="/CreatedProductsImages/@item.Image" alt="">
                         <div class="icons">
-                            <a href="#" class="fas fa-shopping-cart"></a>
-                            <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id">
-                            </a>
+                            <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id"></a>
+                            <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
                         </div>
                     </div>
                     <div class="content">
@@ -214,7 +213,7 @@
                     <div class="content">
                         <p>@item.Name</p>
                         <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
-                        <a href="#" class="btn">add to cart</a>
+                        <a class="btn" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id">add to cart</a>
                     </div>
                 </div>
             }

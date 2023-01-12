@@ -19,7 +19,7 @@ namespace CosmeticWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Products.Include(p => p.Category);
+            var applicationDbContext = _context.Products!.Include(p => p.Category);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,7 +37,7 @@ namespace CosmeticWeb.Controllers
             {
 
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile!.FileName);
                 string extension = Path.GetExtension(product.ImageFile.FileName);
                 product.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/CreatedProductsImages", fileName);
@@ -83,15 +83,15 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    var previousPath = await _context.Products.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    var previousPath = await _context.Products!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
                         System.IO.File.Delete(imagePath);
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(product.ImageFile!.FileName);
                     string extension = Path.GetExtension(product.ImageFile.FileName);
                     product.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/CreatedProductsImages", fileName);
@@ -145,7 +145,7 @@ namespace CosmeticWeb.Controllers
 
             if (product != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", product.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CreatedProductsImages", product.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                     System.IO.File.Delete(imagePath);
@@ -160,7 +160,7 @@ namespace CosmeticWeb.Controllers
 
         private bool ProductExists(Guid id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _context.Products!.Any(e => e.Id == id);
         }
     }
 }

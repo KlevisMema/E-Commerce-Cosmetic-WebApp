@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,6 +31,12 @@
     </header>
 
     <nav class="navbar">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="">Logout</button>
+            </form>
+        }
         <div id="close-navbar" class="fas fa-times"></div>
         <a href="#home">home</a>
         <a href="#shop">shop</a>
@@ -101,6 +110,7 @@
         lightGallery(document.querySelector('.gallery .lightbox'));
     </script>
     @await RenderSectionAsync("Scripts", required: false)
+   
 
 </body>
 </html>

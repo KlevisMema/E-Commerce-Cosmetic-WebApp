@@ -1,9 +1,9 @@
 ﻿using CosmeticWeb.Data;
 using CosmeticWeb.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CosmeticWeb.Controllers
 {
@@ -19,7 +19,7 @@ namespace CosmeticWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return View(await _context.Wishlists.Where(x => x.UserId.Equals(Guid.Parse(user))).ToListAsync());
+            return View(await _context.Wishlists!.Where(x => x.UserId.Equals(Guid.Parse(user))).ToListAsync());
         }
 
         //public IActionResult Create()
@@ -34,14 +34,14 @@ namespace CosmeticWeb.Controllers
             {
                 var user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                var existingProduct = _context.Wishlists.Where(x => x.UserId.Equals(Guid.Parse(user))).Any(x => x.ProductId.Equals(Guid.Parse(productId)));
+                var existingProduct = _context.Wishlists!.Where(x => x.UserId.Equals(Guid.Parse(user))).Any(x => x.ProductId.Equals(Guid.Parse(productId)));
 
                 if (!existingProduct)
                 {
-                    var product = _context.Products.FirstOrDefault(x => x.Id.Equals(Guid.Parse(productId)));
+                    var product = _context.Products!.FirstOrDefault(x => x.Id.Equals(Guid.Parse(productId)));
 
                     wishlist.Id = Guid.NewGuid();
-                    wishlist.ProductId = product.Id;
+                    wishlist.ProductId = product!.Id;
                     wishlist.Image = product.Image;
                     wishlist.Name = product.Name;
                     wishlist.Price = product.Price;
@@ -59,14 +59,14 @@ namespace CosmeticWeb.Controllers
         {
             var user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var wishlist = await _context.Wishlists.Where(x => x.UserId.Equals(Guid.Parse(user))).ToListAsync();
+            var wishlist = await _context.Wishlists!.Where(x => x.UserId.Equals(Guid.Parse(user))).ToListAsync();
 
             var existing = wishlist.FirstOrDefault(x => x.ProductId == id);
 
             if (wishlist == null)
                 return RedirectToAction(nameof(Index));
 
-            _context.Wishlists.Remove(existing);
+            _context.Wishlists!.Remove(existing!);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -74,7 +74,7 @@ namespace CosmeticWeb.Controllers
 
         private bool WishlistExists(Guid id)
         {
-            return _context.Wishlists.Any(e => e.Id == id);
+            return _context.Wishlists!.Any(e => e.Id == id);
         }
     }
 }

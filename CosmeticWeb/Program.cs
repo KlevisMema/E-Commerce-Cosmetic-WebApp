@@ -1,4 +1,5 @@
 using CosmeticWeb.Data;
+using CosmeticWeb.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,12 @@ builder.Services
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
 var app = builder.Build();
+
+await UserSeeds.SeedUsersAndRolesAsync(app, builder.Configuration);
 
 if (app.Environment.IsDevelopment())
 {
@@ -33,6 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

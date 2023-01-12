@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminPannel.cshtml";
+}
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Email Confirmed</th>
+                <th>
+                    <a asp-action="Create" asp-controller="Users" class="btn btn-table">Create</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td>@item.EmailConfirmed</td>
+                    @if (!item.Email.Contains("admin@MagazineManagment.com"))
+                    {
+                        <td>
+                            <a asp-action="Delete" asp-controller="Users" asp-route-id="@item.Id" class="btn">Delete</a>
+                        </td>
+                    }
+                    else
+                    {
+                    <td>You cant delete admin</td>
+                        
+                    }
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
