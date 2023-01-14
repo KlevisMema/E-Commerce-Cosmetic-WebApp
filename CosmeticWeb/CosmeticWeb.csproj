@@ -28,6 +28,9 @@
     <Folder Include="wwwroot\BlogsImages\" />
     <Folder Include="wwwroot\CategoryImages\" />
     <Folder Include="wwwroot\GallerieImages\" />
+    <Folder Include="wwwroot\BlogsImages\" />
+    <Folder Include="wwwroot\GallerieImages\" />
+    <Folder Include="wwwroot\TestimonialsImages\" />
     <Folder Include="wwwroot\TestimonialsImages\" />
   </ItemGroup>
 

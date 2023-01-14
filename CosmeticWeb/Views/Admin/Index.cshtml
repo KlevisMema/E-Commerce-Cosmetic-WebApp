@@ -15,7 +15,6 @@
     .new-students table tbody tr {
         display: flex;
         align-items: center;
-        justify-content: space-around;
     }
 </style>
 
@@ -53,15 +52,18 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="box">
-                <h1>@ViewBag.Income</h1>
-                <h3>Income</h3>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="card">
+                <div class="box">
+                    <h1>@ViewBag.Income</h1>
+                    <h3>Income</h3>
+                </div>
+                <div class="icon-case">
+                    <img src="/AdminPannelImages/income.png" alt="">
+                </div>
             </div>
-            <div class="icon-case">
-                <img src="/AdminPannelImages/income.png" alt="">
-            </div>
-        </div>
+        }
 
     </div>
 
@@ -89,25 +91,28 @@
             </table>
         </div>
 
-        <div class="new-students">
-            <div class="title">
-                <h2>New Users</h2>
-                <a href="#" class="btn">View All</a>
-            </div>
-            <table>
-                <tr>
-                    <th>Profile</th>
-                    <th>Name</th>
-                </tr>
-                @foreach (var item in ViewBag.Recentusers as List<IdentityUser>)
-                {
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="new-students">
+                <div class="title">
+                    <h2>New Users</h2>
+                    <a asp-action="Users" asp-controller="Users" class="btn">View All</a>
+                </div>
+                <table>
                     <tr>
-                        <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                        <td>@item.UserName</td>
+                        <th>Profile</th>
+                        <th>Name</th>
                     </tr>
-                }
-            </table>
-        </div>
+                    @foreach (var item in ViewBag.Recentusers as IEnumerable<IdentityUser>)
+                    {
+                        <tr>
+                            <td><img src="/AdminPannelImages/user.png" alt=""></td>
+                            <td>@item.UserName</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
 
     </div>
 </div>

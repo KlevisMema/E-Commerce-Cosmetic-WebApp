@@ -2,38 +2,50 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
     public class TestimonialsController : Controller
     {
+        #region Injekto databazen dhe IWebHostEnvironment per imazhet ne kontroller
+
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public TestimonialsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public TestimonialsController
+        (
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        #endregion
+
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Testimonials.ToListAsync());
+            return View(await _context.Testimonials!.ToListAsync());
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Rating,Description,ImageFile,CreatedAt")] Testimonial testimonial)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(testimonial.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(testimonial.ImageFile!.FileName);
                 string extension = Path.GetExtension(testimonial.ImageFile.FileName);
                 testimonial.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/TestimonialsImages", fileName);
@@ -47,11 +59,12 @@ namespace CosmeticWeb.Controllers
                 testimonial.CreatedAt = DateTime.Now;
                 _context.Add(testimonial);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            return View(testimonial);
+            return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Testimonials == null)
@@ -69,8 +82,9 @@ namespace CosmeticWeb.Controllers
             return View(testimonial);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Testimonials == null)
@@ -82,7 +96,7 @@ namespace CosmeticWeb.Controllers
 
             if (testimonial != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\TestimonialsImages", testimonial.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\TestimonialsImages", testimonial.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -98,7 +112,7 @@ namespace CosmeticWeb.Controllers
 
         private bool TestimonialExists(Guid id)
         {
-            return _context.Testimonials.Any(e => e.Id == id);
+            return _context.Testimonials!.Any(e => e.Id == id);
         }
     }
 }

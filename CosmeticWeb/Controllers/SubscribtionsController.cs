@@ -2,43 +2,55 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
     public class SubscribtionsController : Controller
     {
+        #region Injekto databazen ne kontroller 
+
         private readonly ApplicationDbContext _context;
 
-        public SubscribtionsController(ApplicationDbContext context)
+        public SubscribtionsController
+        (
+            ApplicationDbContext context
+        )
         {
             _context = context;
         }
 
+        #endregion
+
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Subscribtions.ToListAsync());
-        }
-
-        public IActionResult Create()
-        {
-            return View();
+            return View(await _context.Subscribtions!.ToListAsync());
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,SubscribedAt")] Subscribe subscribe)
+        public async Task<IActionResult> Create(IFormCollection frm_coll)
         {
             if (ModelState.IsValid)
             {
-                subscribe.Id = Guid.NewGuid();
-                subscribe.SubscribedAt = DateTime.UtcNow;
+                var subscribe = new Subscribe
+                {
+                    SubscribedAt = DateTime.Now,
+                    Email = frm_coll["Email"],
+                    Id = Guid.NewGuid()
+                };
+
                 _context.Add(subscribe);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index", "Home");
             }
-            return View(subscribe);
+            return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Subscribtions == null)
@@ -56,8 +68,9 @@ namespace CosmeticWeb.Controllers
             return View(subscribe);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Subscribtions == null)
@@ -69,14 +82,14 @@ namespace CosmeticWeb.Controllers
             {
                 _context.Subscribtions.Remove(subscribe);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SubscribeExists(Guid id)
         {
-          return _context.Subscribtions.Any(e => e.Id == id);
+            return _context.Subscribtions!.Any(e => e.Id == id);
         }
     }
 }

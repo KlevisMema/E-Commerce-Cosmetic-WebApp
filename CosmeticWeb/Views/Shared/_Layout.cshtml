@@ -21,12 +21,15 @@
 
         <a asp-action="Index" asp-controller="Home" class="logo"> <img src="/Images/logo.png"> </a>
 
-        <form action="" class="search-form">
-            <input type="search" name="" placeholder="search here..." id="search-box">
-            <label for="search-box" class="fas fa-search"></label>
-        </form>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+        }
 
-       <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+        <partial name="~/Views/Shared/_LoginPartial.cshtml" />
 
     </header>
 
@@ -40,6 +43,7 @@
         <div id="close-navbar" class="fas fa-times"></div>
         <a href="#home">home</a>
         <a href="#shop">shop</a>
+        <a asp-action="AllProducts" asp-controller="Products">all products</a>
         <a href="#gallery">gallery</a>
         <a href="#team">team</a>
         <a href="#arrivals">arrivals</a>
@@ -64,11 +68,11 @@
 
             <div class="box">
                 <h3>extra links</h3>
-                <a href="#" class="link"> <i class="fas fa-angle-right"></i> my order </a>
-                <a href="#" class="link"> <i class="fas fa-angle-right"></i> my favorite </a>
-                <a href="#" class="link"> <i class="fas fa-angle-right"></i> my wishlist </a>
-                <a href="#" class="link"> <i class="fas fa-angle-right"></i> private policy </a>
-                <a href="#" class="link"> <i class="fas fa-angle-right"></i> terms of use </a>
+                <a asp-action="Index" asp-controller="ShoppingCart" class="link"> <i class="fas fa-angle-right"></i> my order </a>
+                <a asp-action="Index" asp-controller="Wishlists" class="link"> <i class="fas fa-angle-right"></i> my wishlist </a>
+                <a asp-action="Create" asp-controller="ContactUs" class="link"> <i class="fas fa-angle-right"></i> contact us </a>
+                <a asp-action="Privacy" asp-controller="Home" class="link"> <i class="fas fa-angle-right"></i> private policy </a>
+                <a asp-action="Create" asp-controller="Testimonials" class="link"> <i class="fas fa-angle-right"></i> give a review </a>
             </div>
 
             <div class="box">
@@ -85,15 +89,17 @@
                 </div>
             </div>
 
-           @* <div class="box">
-                <h3>newsletter</h3>
-                <p>subscribe for latest updates</p>
-                <form asp-action="Create" asp-controller="Subscribtions">
-                    <input asp-for="Email" type="email" placeholder="enter your email" id="" class="email">
-                    <span asp-validation-for="Email"></span>
-                    <input type="submit" value="subscribe" class="btn">
-                </form>
-            </div>*@
+            @if (User.IsInRole("User"))
+            {
+                <div class="box">
+                    <h3>newsletter</h3>
+                    <p>subscribe for latest updates</p>
+                    <form asp-action="Create" asp-controller="Subscribtions" enctype="multipart/form-data" method="post">
+                        <input type="email" name="Email" placeholder="Email .." id="email" class="email">
+                        <input type="submit" value="subscribe" class="btn">
+                    </form>
+                </div>
+            }
 
         </div>
 
@@ -110,7 +116,5 @@
         lightGallery(document.querySelector('.gallery .lightbox'));
     </script>
     @await RenderSectionAsync("Scripts", required: false)
-   
-
 </body>
 </html>

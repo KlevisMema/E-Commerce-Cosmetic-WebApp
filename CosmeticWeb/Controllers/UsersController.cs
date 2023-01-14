@@ -1,13 +1,16 @@
 ﻿using CosmeticWeb.Data;
 using CosmeticWeb.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
     public class UsersController : Controller
     {
+        #region Injekto databazen dhe UserManager<IdentityUser> per veprime me indentity
+
         private readonly ApplicationDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
 
@@ -21,23 +24,37 @@ namespace CosmeticWeb.Controllers
             _userManager = userManager;
         }
 
+        #endregion
+
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var users = await _db.Users.ToListAsync();
+            var users = await _userManager.GetUsersInRoleAsync("Employee");
 
             return View(users);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Users()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("User");
+
+            return View(users);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(UserViewModel identityUser)
         {
             if (ModelState.IsValid)
@@ -60,9 +77,10 @@ namespace CosmeticWeb.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(x=> x.Id ==  id.ToString());
+            var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == id.ToString());
 
             _db.Users.Remove(user!);
             await _db.SaveChangesAsync();

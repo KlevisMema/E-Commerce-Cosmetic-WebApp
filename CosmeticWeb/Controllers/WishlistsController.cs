@@ -4,11 +4,14 @@ using Microsoft.CodeAnalysis;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
     public class WishlistsController : Controller
     {
+        #region Injekto databazen ne kontroller 
+
         private readonly ApplicationDbContext _context;
 
         public WishlistsController(ApplicationDbContext context)
@@ -16,17 +19,22 @@ namespace CosmeticWeb.Controllers
             _context = context;
         }
 
+        #endregion
+
+        #region Shfaq pamjen e wishlistes me produktet nese ka 
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View(await _context.Wishlists!.Where(x => x.UserId.Equals(Guid.Parse(user))).ToListAsync());
         }
 
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        #endregion
 
+        #region Shton nje produkt ne wishliste 
+
+        [Authorize]
         public async Task<IActionResult> Create(string productId)
         {
             Wishlist wishlist = new();
@@ -55,6 +63,11 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region Heq nje produkt nga wishlista
+
+        [Authorize]
         public async Task<IActionResult> Remove(Guid id)
         {
             var user = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -72,9 +85,6 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WishlistExists(Guid id)
-        {
-            return _context.Wishlists!.Any(e => e.Id == id);
-        }
+        #endregion
     }
 }

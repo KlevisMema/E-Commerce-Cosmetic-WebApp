@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CosmeticWeb.Models.Product>
+@{
+    ViewData["Title"] = "AllProducts";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+    select{
+        font-size: 20px;
+        padding: 5px 10px;
+        border: 1px solid #f05462;
+        cursor: pointer;
+    }
+    label{
+        padding-right: 7px;
+        font-size: 16px;
+    }
+
+</style>
+
+<section class="shop" id="shop">
+
+    <div class="heading">
+        <h1>All Products</h1>
+        <br />
+        <label >Filter by:</label>
+
+        <select id="filter">
+            <option></option>
+            <option value="Price">Price</option>
+            <option value="Rating">Rating</option>
+        </select>
+
+    </div>
+
+    <div class="swiper products-slider">
+
+        <div class="swiper-wrapper">
+
+            @foreach (var item in Model)
+            {
+                <input type="text" hidden id="productId" value="@item.Id" />
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <span class="discount">-25%</span>
+                        <img src="/CreatedProductsImages/@item.Image" alt="">
+                        <div class="icons">
+                            <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id"></a>
+                            <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            @for (var stars = 0; stars < item.Rating; stars++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                        </div>
+                        <p>@item.Name</p>
+                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $("#filter").change(function () {
+            $.ajax({
+                url: "/Products/AllProducts",
+                data: {
+                    filterValue: $('#filter').val()
+                },
+                success: function (result) {
+                    $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                }
+            });
+        });
+    });
+</script>

@@ -4,31 +4,38 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<style>
+    .testimonailsCreate{
+        height: 500px;
+    }
+</style>
 
-<h4>Testimonial</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="shopping-cart testimonailsCreate">
+
+    <div class="title">
+        Your review
+    </div>
+
+    <div class="item itemCheckOut">
+
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" placeholder="Name ..."/>
+                <input asp-for="Name" class="form-control" placeholder="Name ..." />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" placeholder="Rating ..."/>
+                <input asp-for="Rating" class="form-control" placeholder="Rating ..." />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" placeholder="Description ..."/>
+                <input asp-for="Description" class="form-control" placeholder="Description ..." />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control" accept="image/*" placeholder="Image ..." />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
@@ -36,13 +43,13 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    </div>
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

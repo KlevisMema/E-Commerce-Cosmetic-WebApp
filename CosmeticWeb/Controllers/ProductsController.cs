@@ -3,35 +3,60 @@ using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
     public class ProductsController : Controller
     {
+        #region Injekto databazen dhe IWebHostEnvironment per foton ne konstruktor
+
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public ProductsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public ProductsController
+        (
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        #endregion
+
+        #region Merr te gjithe produkete nga databaza
+
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Products!.Include(p => p.Category);
             return View(await applicationDbContext.ToListAsync());
         }
 
+        #endregion
+
+        #region Shfaq formen per te krijuar nje produkt te ri 
+
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
+        #endregion
+
+        #region Krijo produktin me te dhenat nga forma 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,PreviousPrice,Description,Rating,CreatedAt,ModifiedAt,ImageFile,CategoryId")] Product product)
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> Create
+        (
+            [Bind("Id,Name,Price,PreviousPrice,Description,Rating,CreatedAt,ModifiedAt,ImageFile,CategoryId")] Product product
+        )
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +81,11 @@ namespace CosmeticWeb.Controllers
             return View(product);
         }
 
+        #endregion
+
+        #region Shfaq formen per te edituar nje produkt
+
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Products == null)
@@ -72,9 +102,18 @@ namespace CosmeticWeb.Controllers
             return View(product);
         }
 
+        #endregion
+
+        #region Edito produktin me te dhenat nga forma
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,PreviousPrice,Description,Rating,CreatedAt,ModifiedAt,ImageFile,CategoryId")] Product product)
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> Edit
+        (
+            Guid id,
+            [Bind("Id,Name,Price,PreviousPrice,Description,Rating,CreatedAt,ModifiedAt,ImageFile,CategoryId")] Product product
+        )
         {
             if (id != product.Id)
                 return NotFound();
@@ -116,6 +155,11 @@ namespace CosmeticWeb.Controllers
             return View(product);
         }
 
+        #endregion
+
+        #region Shfaq formen per te fshire nje produkt
+
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Products == null)
@@ -134,8 +178,13 @@ namespace CosmeticWeb.Controllers
             return View(product);
         }
 
-        [HttpPost, ActionName("Delete")]
+        #endregion
+
+        #region Fshi produkin kur user e konfirmon
+
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Products == null)
@@ -158,9 +207,41 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region Kthen true ose false nqs produkti me at id egziston
+
         private bool ProductExists(Guid id)
         {
             return _context.Products!.Any(e => e.Id == id);
         }
+
+        #endregion
+
+        public async Task<IActionResult> AllProducts(string? filterValue = null)
+        {
+            if (!String.IsNullOrEmpty(filterValue))
+            {
+                if (filterValue == "Price")
+                {
+                    var productsOrderedByPrice = await _context.Products!.OrderByDescending(e => e.Price).ToListAsync();
+
+                    return View(productsOrderedByPrice);
+                }
+                if (filterValue == "Rating")
+                {
+                    var productsOrderedByRating = await _context.Products!.OrderByDescending(e => e.Rating).ToListAsync();
+
+                    return View(productsOrderedByRating);
+                }
+            }
+            else
+            {
+                var allProducts = await _context.Products!.ToListAsync();
+                return View(allProducts);
+            }
+            return View();
+        }
+
     }
 }

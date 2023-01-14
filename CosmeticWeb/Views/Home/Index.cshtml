@@ -52,7 +52,7 @@
 
     @foreach (var item in ViewBag.Categories as List<Category>)
     {
-        <a href="#" class="box">
+        <a asp-action="Products" asp-controller="Categories" asp-route-id="@item.Id" class="box">
             <img src="/CategoryImages/@item.Image">
             <p>@item.Name</p>
         </a>

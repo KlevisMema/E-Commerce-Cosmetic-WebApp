@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -16,11 +17,13 @@ namespace CosmeticWeb.Controllers
             _HostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Categories.ToListAsync());
+            return View(await _context.Categories!.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
@@ -28,12 +31,13 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([Bind("Id,Name,CreatedAt,ImageFile,ModifiedAt")] Category category)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(category.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(category.ImageFile!.FileName);
                 string extension = Path.GetExtension(category.ImageFile.FileName);
                 category.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/CategoryImages", fileName);
@@ -53,6 +57,7 @@ namespace CosmeticWeb.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Categories == null)
@@ -70,6 +75,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,CreatedAt,ModifiedAt")] Category category)
         {
             if (id != category.Id)
@@ -79,15 +85,15 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    Category previousPath = await _context.Categories.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    Category? previousPath = await _context!.Categories!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CategoryImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CategoryImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
                         System.IO.File.Delete(imagePath);
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(category.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(category.ImageFile!.FileName);
                     string extension = Path.GetExtension(category.ImageFile.FileName);
                     category.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/CategoryImages", fileName);
@@ -113,6 +119,7 @@ namespace CosmeticWeb.Controllers
             return View(category);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Categories == null)
@@ -130,8 +137,9 @@ namespace CosmeticWeb.Controllers
             return View(category);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Categories == null)
@@ -143,7 +151,7 @@ namespace CosmeticWeb.Controllers
 
             if (category != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CategoryImages", category.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CategoryImages", category.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -152,14 +160,23 @@ namespace CosmeticWeb.Controllers
 
                 _context.Categories.Remove(category);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
+        public async Task<IActionResult> Products(Guid id)
+        {
+            var products = await _context.Products!.Include(x => x.Category).Where(x => x.CategoryId == id).ToListAsync();
+            var categoryName = await _context.Categories!.FirstOrDefaultAsync(x => x.Id == id);
+            ViewBag.CategoyName = categoryName!.Name;
+            return View(products);
+        }
+
         private bool CategoryExists(Guid id)
         {
-          return _context.Categories.Any(e => e.Id == id);
+            return _context.Categories!.Any(e => e.Id == id);
         }
     }
 }

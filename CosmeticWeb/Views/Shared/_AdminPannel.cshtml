@@ -24,28 +24,39 @@
             <li><img src="/AdminPannelImages/help-web-button.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Testimonials"><span>TESTIMONIALS</span></a></li>
             <li><a asp-action="Index" asp-controller="Blogs" class="fas fa-solid fa-blog"></a>&nbsp;<a asp-action="Index" asp-controller="Blogs"><span>BLOGS</span></a> </li>
             <li><a asp-action="Index" asp-controller="ContactUs" class="fas fa-solid fa-address-book"></a>&nbsp;<a asp-action="Index" asp-controller="ContactUs"><span>CONTACTS</span></a> </li>
-            <hr style="color:white;border:1px solid #fff;outline:none;"/>
+            <hr style="color:white;border:1px solid #fff;outline:none;" />
             <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp; <a asp-action="Index" asp-controller="Products"><span>PRODUCTS</span></a> </li>
             <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Categories"><span>CATEGORIES</span></a> </li>
             <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="HomeSliders"><span>HOME SLIDER</span></a> </li>
             <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="CosmeticTeamMembers"><span>TEAM MEMBERS</span></a> </li>
             <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Galleries"><span>GALLERY</span></a> </li>
-            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Users"><span>Users</span></a> </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Users"><span>EMPLOYEES</span></a> </li>
+                <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Users" asp-controller="Users"><span>USERS</span></a> </li>
+            }
         </ul>
     </div>
     <div class="_container">
         <div class="_header">
             <div class="_nav">
-                <div class="_search">
+               @* <div class="_search">
                     <input type="text" placeholder="Search..">
                     <button type="submit"><img src="/AdminPannelImages/search.png" alt=""></button>
-                </div>
+                </div>*@
                 <div class="user">
-                    <h3>Welcome Admin</h3>
-                    @*<a href="#" class="btn">Add New</a>
-                    <img src="/AdminPannelImages/notifications.png" alt="">*@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <h3>Welcome Admin</h3>
+                    }
+                    else
+                    {
+                        <h3>Welcome Employee</h3>
+                    }
                     <div class="img-case">
-                        <img src="/AdminPannelImages/user.png" alt="">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>

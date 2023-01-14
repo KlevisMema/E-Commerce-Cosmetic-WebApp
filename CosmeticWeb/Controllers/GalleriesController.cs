@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -10,17 +11,23 @@ namespace CosmeticWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public GalleriesController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public GalleriesController
+        (
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Galleries.ToListAsync());
+            return View(await _context.Galleries!.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
@@ -28,12 +35,13 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([Bind("Id,ImageFile,DateCreated")] Gallery gallery)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(gallery.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(gallery.ImageFile!.FileName);
                 string extension = Path.GetExtension(gallery.ImageFile.FileName);
                 gallery.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/GallerieImages", fileName);
@@ -50,6 +58,7 @@ namespace CosmeticWeb.Controllers
             return View(gallery);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Galleries == null)
@@ -64,6 +73,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,ImageFile,DateCreated")] Gallery gallery)
         {
             if (id != gallery.Id)
@@ -73,16 +83,16 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    var previousPath = await _context.Galleries.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    var previousPath = await _context.Galleries!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\GallerieImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\GallerieImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
                         System.IO.File.Delete(imagePath);
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(gallery.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(gallery.ImageFile!.FileName);
                     string extension = Path.GetExtension(gallery.ImageFile.FileName);
                     gallery.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/GallerieImages", fileName);
@@ -108,6 +118,7 @@ namespace CosmeticWeb.Controllers
             return View(gallery);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Galleries == null)
@@ -121,8 +132,9 @@ namespace CosmeticWeb.Controllers
             return View(gallery);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Galleries == null)
@@ -133,7 +145,7 @@ namespace CosmeticWeb.Controllers
             if (gallery != null)
             {
 
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\GallerieImages", gallery.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\GallerieImages", gallery.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                     System.IO.File.Delete(imagePath);
@@ -147,7 +159,7 @@ namespace CosmeticWeb.Controllers
 
         private bool GalleryExists(Guid id)
         {
-            return _context.Galleries.Any(e => e.Id == id);
+            return _context.Galleries!.Any(e => e.Id == id);
         }
     }
 }

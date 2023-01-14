@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -9,37 +10,21 @@ namespace CosmeticWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController
+        (
+            ApplicationDbContext context
+        )
         {
             _context = context;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Orders.ToListAsync());
+            return View(await _context.Orders!.ToListAsync());
         }
 
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CustomerName,CustomerPhone,CustomerEmail,CustomerAddress,CreatedDate")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                order.Id = Guid.NewGuid();
-                order.CreatedDate = DateTime.UtcNow;
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(order);
-        }
-
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Orders == null)
@@ -57,8 +42,9 @@ namespace CosmeticWeb.Controllers
             return View(order);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Orders == null)
@@ -70,14 +56,14 @@ namespace CosmeticWeb.Controllers
             {
                 _context.Orders.Remove(order);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderExists(Guid id)
         {
-          return _context.Orders.Any(e => e.Id == id);
+            return _context.Orders!.Any(e => e.Id == id);
         }
     }
 }

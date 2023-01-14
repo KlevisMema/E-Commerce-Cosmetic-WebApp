@@ -1,8 +1,9 @@
 ﻿using CosmeticWeb.Data;
+using System.Diagnostics;
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -11,22 +12,26 @@ namespace CosmeticWeb.Controllers
 
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController
+        (
+            ApplicationDbContext context
+        )
         {
             _context = context;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.ToListAsync();
-            var newArrivals = await _context.Products.OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
-            var categories = await _context.Categories.ToListAsync();
-            var firstHomeSlider =  await _context.homeSliders.Take(1).ToListAsync();
-            var restHomeSlider =  await _context.homeSliders.Skip(1).ToListAsync();
-            var testimonials =  await _context.Testimonials.ToListAsync();
-            var blogs =  await _context.Blogs.ToListAsync();
-            var galerieImages =  await _context.Galleries.ToListAsync();
-            var teamMembers =  await _context.CosmeticTeamMembers.ToListAsync();
+            var products = await _context.Products!.ToListAsync();
+            var newArrivals = await _context.Products!.OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
+            var categories = await _context.Categories!.ToListAsync();
+            var firstHomeSlider = await _context.homeSliders!.Take(1).ToListAsync();
+            var restHomeSlider = await _context.homeSliders!.Skip(1).ToListAsync();
+            var testimonials = await _context.Testimonials!.ToListAsync();
+            var blogs = await _context.Blogs!.ToListAsync();
+            var galerieImages = await _context.Galleries!.ToListAsync();
+            var teamMembers = await _context.CosmeticTeamMembers!.ToListAsync();
 
             ViewBag.Products = products;
             ViewBag.NewArrivals = newArrivals;
@@ -41,11 +46,13 @@ namespace CosmeticWeb.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

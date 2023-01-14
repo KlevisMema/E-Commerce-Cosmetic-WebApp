@@ -5,8 +5,14 @@
     Layout = "~/Views/Shared/_AdminPannel.cshtml";
 }
 
+<style>
+    .teamMember{
+        margin-top:90px;
+    }
+</style>
+
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 teamMember">
         <h2>Add a new team member</h2>
         <br />
         <form asp-action="Create" enctype="multipart/form-data">

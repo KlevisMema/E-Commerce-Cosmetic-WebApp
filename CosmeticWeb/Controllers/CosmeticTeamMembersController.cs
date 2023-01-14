@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -10,15 +11,20 @@ namespace CosmeticWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public CosmeticTeamMembersController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public CosmeticTeamMembersController
+        (
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CosmeticTeamMembers.ToListAsync());
+            return View(await _context.CosmeticTeamMembers!.ToListAsync());
         }
 
         public IActionResult Create()
@@ -28,12 +34,13 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([Bind("Id,Name,Role,Linkedin,Facebook,Instagram,Twitter,ImageFile,DateCreated")] CosmeticTeamMember cosmeticTeamMember)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(cosmeticTeamMember.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(cosmeticTeamMember.ImageFile!.FileName);
                 string extension = Path.GetExtension(cosmeticTeamMember.ImageFile.FileName);
                 cosmeticTeamMember.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/CosmeticTeamMemberImages", fileName);
@@ -50,6 +57,7 @@ namespace CosmeticWeb.Controllers
             return View(cosmeticTeamMember);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.CosmeticTeamMembers == null)
@@ -67,6 +75,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Role,Linkedin,Facebook,Instagram,Twitter,ImageFile,DateCreated")] CosmeticTeamMember cosmeticTeamMember)
         {
             if (id != cosmeticTeamMember.Id)
@@ -76,15 +85,15 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    var previousPath = await _context.CosmeticTeamMembers.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    var previousPath = await _context.CosmeticTeamMembers!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CosmeticTeamMemberImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CosmeticTeamMemberImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
                         System.IO.File.Delete(imagePath);
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(cosmeticTeamMember.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(cosmeticTeamMember.ImageFile!.FileName);
                     string extension = Path.GetExtension(cosmeticTeamMember.ImageFile.FileName);
                     cosmeticTeamMember.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/CosmeticTeamMemberImages", fileName);
@@ -121,8 +130,9 @@ namespace CosmeticWeb.Controllers
             return View(cosmeticTeamMember);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.CosmeticTeamMembers == null)
@@ -132,7 +142,7 @@ namespace CosmeticWeb.Controllers
 
             if (cosmeticTeamMember != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CosmeticTeamMemberImages", cosmeticTeamMember.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\CosmeticTeamMemberImages", cosmeticTeamMember.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                     System.IO.File.Delete(imagePath);
@@ -146,7 +156,7 @@ namespace CosmeticWeb.Controllers
 
         private bool CosmeticTeamMemberExists(Guid id)
         {
-            return _context.CosmeticTeamMembers.Any(e => e.Id == id);
+            return _context.CosmeticTeamMembers!.Any(e => e.Id == id);
         }
     }
 }

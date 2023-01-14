@@ -10,15 +10,23 @@ namespace CosmeticWeb.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        #region Injekto databazen ne kontroller
+
         private readonly ApplicationDbContext _context;
 
-        public ShoppingCartController(ApplicationDbContext context)
+        public ShoppingCartController
+        (
+            ApplicationDbContext context
+        )
         {
             _context = context;
         }
 
+        #endregion
 
-        [AllowAnonymous]
+        #region Shfaq shopping cart me produkte 
+
+        [Authorize]
         public IActionResult Index()
         {
             var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart") ?? new List<CartItemViewModel>();
@@ -34,7 +42,11 @@ namespace CosmeticWeb.Controllers
             return View(cartVM);
         }
 
-        [AllowAnonymous]
+        #endregion
+
+        #region Shton nje produkt ne shopping cart 
+
+        [Authorize]
         public async Task<IActionResult> Add(Guid id, int quantity)
         {
             var product = await _context.Products!.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
@@ -58,7 +70,11 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+        #endregion
+
+        #region Heq 1 nga sasia e nje produkti nga shopping carta 
+
+        [Authorize]
         public IActionResult Decrease(Guid id)
         {
             var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
@@ -78,7 +94,11 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+        #endregion
+
+        #region Heq te gjithe produktin nga shopping cart pavarsisht sasise
+
+        [Authorize]
         public IActionResult Remove(Guid id)
         {
             var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
@@ -93,7 +113,11 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+        #endregion
+
+        #region I heq te gjithe produktet nga shopping carta   
+
+        [Authorize]
         public IActionResult Clear()
         {
             HttpContext.Session.Remove("ShoppingCart");
@@ -101,8 +125,12 @@ namespace CosmeticWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        #endregion
+
+        #region Shfaq formen e check outit 
+
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult ProccedToCheckout()
         {
             var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart");
@@ -112,8 +140,12 @@ namespace CosmeticWeb.Controllers
             return View();
         }
 
+        #endregion
+
+        #region Ploteson tabelen order te dhenat nga forma e check out, dhe order items me produktet e bera order nga useri 
+
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public IActionResult ProccedToCheckout(ProceedCheckOutViewModel checkOut)
         {
@@ -154,10 +186,16 @@ namespace CosmeticWeb.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        #endregion
+
+        #region Shfaq pamjen e thank you pasi useri ka bere check out 
+
+        [Authorize]
         public IActionResult ThankYou()
         {
             return View();
         }
+
+        #endregion
     }
 }

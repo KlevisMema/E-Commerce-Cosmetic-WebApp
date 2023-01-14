@@ -2,7 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -11,17 +11,23 @@ namespace CosmeticWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public BlogsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public BlogsController
+        (
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blogs.ToListAsync());
+            return View(await _context.Blogs!.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
@@ -29,12 +35,13 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,ImageFile,DateCreated,DateModified")] Blog blog)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(blog.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(blog.ImageFile!.FileName);
                 string extension = Path.GetExtension(blog.ImageFile.FileName);
                 blog.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/BlogsImages", fileName);
@@ -54,6 +61,7 @@ namespace CosmeticWeb.Controllers
             return View(blog);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Blogs == null)
@@ -71,6 +79,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,ImageFile,DateCreated,DateModified")] Blog blog)
         {
             if (id != blog.Id)
@@ -83,9 +92,9 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    var previousPath = await _context.Blogs.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    var previousPath = await _context.Blogs!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\BlogsImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\BlogsImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
                     {
@@ -93,7 +102,7 @@ namespace CosmeticWeb.Controllers
                     }
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(blog.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(blog.ImageFile!.FileName);
                     string extension = Path.GetExtension(blog.ImageFile.FileName);
                     blog.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/BlogsImages", fileName);
@@ -125,6 +134,7 @@ namespace CosmeticWeb.Controllers
             return View(blog);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Blogs == null)
@@ -142,8 +152,9 @@ namespace CosmeticWeb.Controllers
             return View(blog);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Blogs == null)
@@ -155,7 +166,7 @@ namespace CosmeticWeb.Controllers
 
             if (blog != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\BlogsImages", blog.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\BlogsImages", blog.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -171,7 +182,7 @@ namespace CosmeticWeb.Controllers
 
         private bool BlogExists(Guid id)
         {
-            return _context.Blogs.Any(e => e.Id == id);
+            return _context.Blogs!.Any(e => e.Id == id);
         }
     }
 }

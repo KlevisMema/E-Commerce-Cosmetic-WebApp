@@ -1,0 +1,53 @@
+﻿@model List<CosmeticWeb.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<section class="shop" id="shop">
+
+    <div class="heading">
+        <h1>products in @ViewBag.CategoyName category</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur officia beatae distinctio minus optio?</p>
+    </div>
+
+    <div class="swiper products-slider">
+
+        <div class="swiper-wrapper">
+
+            @foreach (var item in Model)
+            {
+                <input type="text" hidden id="productId" value="@item.Id" />
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <span class="discount">-25%</span>
+                        <img src="/CreatedProductsImages/@item.Image" alt="">
+                        <div class="icons">
+                            <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id"></a>
+                            <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            @for (var stars = 0; stars < item.Rating; stars++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                            @if (item.Rating % 1 > 0)
+                            {
+                                <i class="fas fa-star-half-alt"></i>
+                            }
+                        </div>
+                        <p>@item.Name</p>
+                        <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>

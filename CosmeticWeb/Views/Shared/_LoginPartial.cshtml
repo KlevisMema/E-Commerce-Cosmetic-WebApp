@@ -5,7 +5,8 @@
 <div class="icons">
     @if (SignInManager.IsSignedIn(User))
     {
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="ManageAccount">Account @*@User.Identity?.Name!*@</a>
+
+        <a href="#" class="ManageAccount">Welcome</a>
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
         <a asp-action="Index" asp-controller="Wishlists" class="fas fa-heart"></a>
@@ -15,8 +16,7 @@
     {
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <a asp-action="Index" asp-controller="Wishlists" class="fas fa-heart"></a>
-        <a asp-action="Index" asp-controller="ShoppingCart" class="fas fa-shopping-cart"></a>
+
         <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-sharp fa-solid fa-user"></a>
     }
 </div>

@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -9,16 +10,21 @@ namespace CosmeticWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public ContactUsController(ApplicationDbContext context)
+        public ContactUsController
+        (
+            ApplicationDbContext context
+        )
         {
             _context = context;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ContactUs.ToListAsync());
+            return View(await _context.ContactUs!.ToListAsync());
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             return View();
@@ -26,67 +32,21 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Create([Bind("Id,Name,Subject,DateCreated,Email,Message")] ContactUs contactUs)
         {
             if (ModelState.IsValid)
             {
-                contactUs.DateCreated= DateTime.UtcNow;
+                contactUs.DateCreated = DateTime.UtcNow;
                 contactUs.Id = Guid.NewGuid();
                 _context.Add(contactUs);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            return View(contactUs);
+            return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null || _context.ContactUs == null)
-            {
-                return NotFound();
-            }
-
-            var contactUs = await _context.ContactUs.FindAsync(id);
-            if (contactUs == null)
-            {
-                return NotFound();
-            }
-            return View(contactUs);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Subject,Date,Email,Message")] ContactUs contactUs)
-        {
-            if (id != contactUs.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    contactUs.DateCreated = DateTime.UtcNow;
-                    _context.Update(contactUs);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ContactUsExists(contactUs.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(contactUs);
-        }
-
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.ContactUs == null)
@@ -104,8 +64,9 @@ namespace CosmeticWeb.Controllers
             return View(contactUs);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.ContactUs == null)
@@ -117,14 +78,14 @@ namespace CosmeticWeb.Controllers
             {
                 _context.ContactUs.Remove(contactUs);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContactUsExists(Guid id)
         {
-          return _context.ContactUs.Any(e => e.Id == id);
+            return _context.ContactUs!.Any(e => e.Id == id);
         }
     }
 }

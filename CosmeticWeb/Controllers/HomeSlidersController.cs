@@ -2,6 +2,7 @@
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticWeb.Controllers
 {
@@ -10,17 +11,23 @@ namespace CosmeticWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
-        public HomeSlidersController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public HomeSlidersController
+        (
+            ApplicationDbContext context, 
+            IWebHostEnvironment hostEnvironment
+        )
         {
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.homeSliders.ToListAsync());
+              return View(await _context.homeSliders!.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
@@ -28,12 +35,13 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([Bind("Id,Name,Comment,ReadMore,ImageFile")] HomeSlider homeSlider)
         {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _HostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(homeSlider.ImageFile.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(homeSlider.ImageFile!.FileName);
                 string extension = Path.GetExtension(homeSlider.ImageFile.FileName);
                 homeSlider.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(wwwRootPath + "/HomeSliderImages", fileName);
@@ -51,6 +59,7 @@ namespace CosmeticWeb.Controllers
             return View(homeSlider);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.homeSliders == null)
@@ -68,6 +77,7 @@ namespace CosmeticWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Comment,ReadMore,ImageFile")] HomeSlider homeSlider)
         {
             if (id != homeSlider.Id)
@@ -79,17 +89,15 @@ namespace CosmeticWeb.Controllers
             {
                 try
                 {
-                    var previousPath = await _context.homeSliders.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                    var previousPath = await _context.homeSliders!.FirstOrDefaultAsync(x => x.Id.Equals(id));
 
-                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\HomeSliderImages", previousPath.Image);
+                    var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\HomeSliderImages", previousPath!.Image!);
 
                     if (System.IO.File.Exists(imagePath))
-                    {
                         System.IO.File.Delete(imagePath);
-                    }
 
                     string wwwRootPath = _HostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(homeSlider.ImageFile.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(homeSlider.ImageFile!.FileName);
                     string extension = Path.GetExtension(homeSlider.ImageFile.FileName);
                     homeSlider.Image = fileName += DateTime.Now.ToString("yymmssfff") + extension;
                     string path = Path.Combine(wwwRootPath + "/HomeSliderImages", fileName);
@@ -118,6 +126,7 @@ namespace CosmeticWeb.Controllers
             return View(homeSlider);
         }
 
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.homeSliders == null)
@@ -135,8 +144,9 @@ namespace CosmeticWeb.Controllers
             return View(homeSlider);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Employee")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.homeSliders == null)
@@ -148,7 +158,7 @@ namespace CosmeticWeb.Controllers
 
             if (homeSlider != null)
             {
-                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\HomeSliderImages", homeSlider.Image);
+                var imagePath = Path.Combine(_HostEnvironment.WebRootPath + "\\HomeSliderImages", homeSlider.Image!);
 
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -164,7 +174,7 @@ namespace CosmeticWeb.Controllers
 
         private bool HomeSliderExists(Guid id)
         {
-          return _context.homeSliders.Any(e => e.Id == id);
+          return _context.homeSliders!.Any(e => e.Id == id);
         }
     }
 }
