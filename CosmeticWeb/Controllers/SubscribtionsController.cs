@@ -22,12 +22,15 @@ namespace CosmeticWeb.Controllers
 
         #endregion
 
+        #region kthen pamjen Index
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Subscribtions!.ToListAsync());
         }
+        #endregion
 
+        #region krijon subscribe te ri dhe e ruan ne databaze
         [HttpPost]
         [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
@@ -49,7 +52,9 @@ namespace CosmeticWeb.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        #endregion
 
+        #region shfaq view e fshirjes "Are you sure you want to delete"
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -67,7 +72,9 @@ namespace CosmeticWeb.Controllers
 
             return View(subscribe);
         }
+        #endregion
 
+        #region konfirmohet fshirja
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin,Employee")]
@@ -86,10 +93,7 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
-        private bool SubscribeExists(Guid id)
-        {
-            return _context.Subscribtions!.Any(e => e.Id == id);
-        }
     }
 }

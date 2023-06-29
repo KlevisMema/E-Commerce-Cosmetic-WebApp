@@ -1,11 +1,13 @@
-﻿@model IEnumerable<CosmeticWeb.Models.Wishlist>
+﻿@using CosmeticWeb.Helpers;
+@model IEnumerable<CosmeticWeb.Models.Wishlist>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Wishlist";
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
 }
 
 <style>
-    .empty-wishList{
+    .empty-wishList {
         height: 100%;
         width: 100%;
         display: flex;
@@ -15,21 +17,20 @@
     }
 </style>
 
-<section class="shop" id="shop">
-
-    <div class="heading">
-        <h1>Wish list</h1>
-    </div>
+<section class="shop @modeClass" id="shop">
 
     <div class="swiper products-slider">
-        @if(Model.Count() == 0)
+        @if (Model.Count() == 0)
         {
             <div class="empty-wishList">
-                <h1>Wish List Empty</h1>
+                <h1>Wish List Empty </h1>
             </div>
         }
         else
         {
+            <div class="heading">
+                <h1>Wish list</h1>
+            </div>
             <div class="swiper-wrapper">
 
                 @foreach (var item in Model)
@@ -44,7 +45,7 @@
                                 <a class="fas fa-solid fa-trash" id="wishlist" asp-action="Remove" asp-controller="Wishlists" asp-route-id="@item.ProductId"></a>
                             </div>
                         </div>
-                        <div class="content">
+                        <div class="content @modeClass">
                             <p>@item.Name</p>
                             <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
                         </div>

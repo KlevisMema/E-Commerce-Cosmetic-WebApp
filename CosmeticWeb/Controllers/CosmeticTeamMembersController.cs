@@ -21,17 +21,21 @@ namespace CosmeticWeb.Controllers
             _HostEnvironment = hostEnvironment;
         }
 
+        
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.CosmeticTeamMembers!.ToListAsync());
         }
 
+        #region Shfaq formen per te krijuar nje member te ri
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
+        #region Krijon member te ri me te dhenat nga forma
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -56,7 +60,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(cosmeticTeamMember);
         }
+        #endregion
 
+        #region shfaq formen per te edituar nje team member
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -72,7 +78,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(cosmeticTeamMember);
         }
+        #endregion
 
+        #region Editon nje member
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -117,7 +125,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(cosmeticTeamMember);
         }
+        #endregion
 
+        #region Shfaq formen per te fshire nje member
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.CosmeticTeamMembers == null)
@@ -129,7 +139,9 @@ namespace CosmeticWeb.Controllers
 
             return View(cosmeticTeamMember);
         }
+        #endregion
 
+        #region Fshin nje member
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
         [HttpPost, ActionName("Delete")]
@@ -153,10 +165,13 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region Kthen true ose false nqs memberi me at id egziston
         private bool CosmeticTeamMemberExists(Guid id)
         {
             return _context.CosmeticTeamMembers!.Any(e => e.Id == id);
         }
+        #endregion
     }
 }

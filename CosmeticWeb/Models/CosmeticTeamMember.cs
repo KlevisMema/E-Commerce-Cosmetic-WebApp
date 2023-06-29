@@ -7,7 +7,7 @@ namespace CosmeticWeb.Models
 {
     public class CosmeticTeamMember
     {
-        #region Id e persoit te skuadres
+        #region Id e personit te skuadres
         public Guid Id { get; set; }
         #endregion
 

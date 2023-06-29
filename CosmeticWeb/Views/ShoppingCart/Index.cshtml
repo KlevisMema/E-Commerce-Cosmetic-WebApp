@@ -1,68 +1,210 @@
-﻿@model CosmeticWeb.ViewModels.CartViewModel
+﻿@using CosmeticWeb.Data;
+@using CosmeticWeb.Helpers;
+@using CosmeticWeb.ViewModels;
+@model CosmeticWeb.ViewModels.CartViewModel
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.EntityFrameworkCore;
+@inject ApplicationDbContext _db;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shopping cart";
+
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
+
+    List<Product> products = new();
+
+    if (TempData["CategoryId"] is null)
+    {
+        var cart = ViewContext.HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart") ?? new List<CartItemViewModel>();
+
+        Random random = new();
+
+        var randomCategoryId = cart.Select(x => x.ProductCategoryId).OrderBy(x => random.Next()).FirstOrDefault();
+
+        products = await _db.Products!.Include(x => x.Category)
+                                               .Where(x => x.CategoryId == randomCategoryId)
+                                               .ToListAsync();
+    }
 }
 
-<div class="shopping-cart">
+<style>
+    .shopping-cart-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1200px;
+        flex-direction: column;
+        position: relative;
+    }
 
-    <div class="title">
-        Shopping Bag
+    .shopping-cart {
+        position: absolute;
+        top: 0;
+    }
+
+    #shop {
+        width: 100%;
+    }
+
+    .shopping-cart {
+        position: initial;
+        margin: 0;
+    }
+
+</style>
+
+<div class="shopping-cart-wrapper @modeClass">
+
+    <div class="shopping-cart @modeClass">
+
+            <div class="title">
+                Shopping Bag
+            </div>
+            @if (Model.CartItems!.Count > 0)
+            {
+                @foreach (var item in Model.CartItems!)
+                {
+                    <div class="item">
+
+                        <div class="buttons">
+                            <a asp-action="Remove" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="delete-btn"></a>
+                            <a asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.ProductId" class="like-btn"></a>
+                        </div>
+
+                        <div class="image">
+                            <img src="/CreatedProductsImages/@item.Image" width="80px" style="padding:20px;" />
+                        </div>
+
+                        <div class="description">
+                            <span>@item.ProductName</span>
+                            <span>$@item.Price</span>
+                            <span>@item.ProductCategory</span>
+                        </div>
+
+                        <div class="quantity">
+
+                            <a asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.ProductId">
+                                <i class="fas fa-solid fa-plus"></i>
+                            </a>
+
+                            <input type="text" name="name" value="@item.Quantity" readonly>
+
+                            <a asp-action="Decrease" asp-controller="ShoppingCart" asp-route-id="@item.ProductId">
+                                <i class="fas fa-solid fa-minus"></i>
+                            </a>
+
+                        </div>
+
+                        <div class="total-price">@Model.CartItems.Where(x => x.ProductId == item.ProductId).Sum(x => x.Quantity * x.Price).ToString("C2")</div>
+                    </div>
+
+
+                }
+
+                <div class="item grandTotal">
+
+                    <div class="ProccedToCheckout"> <a asp-action="ProccedToCheckout" asp-controller="ShoppingCart">check out</a> </div>
+
+                    <div class="ClearCart"> <a asp-action="Clear" asp-controller="ShoppingCart"> Clear cart </a> </div>
+
+                    <div class="sum-total-price">@Model.GrandTotal.ToString("C2")</div>
+                </div>
+
+            }
+            else
+            {
+            <div class="item emptyCart">
+                <h1 style="color:#dc3545">Your Cart Is Empty</h1>
+            </div>
+            }
+
+
+
+
+
     </div>
-    @if (Model.CartItems!.Count > 0)
-    {
-        @foreach (var item in Model.CartItems!)
-        {
-            <div class="item">
 
-                <div class="buttons">
-                    <a asp-action="Remove" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="delete-btn"></a>
-                    <a asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.ProductId" class="like-btn"></a>
-                </div>
+    <section class="shop @modeClass" id="shop">
 
-                <div class="image">
-                    <img src="/CreatedProductsImages/@item.Image" width="80px" />
-                </div>
+        <div class="heading">
+            <h1>Suggestions</h1>
+        </div>
 
-                <div class="description">
-                    <span>@item.ProductName</span>
-                    <span>$@item.Price</span>
-                    <span>@item.ProductCategory</span>
-                </div>
+        <div class="swiper products-slider">
 
-                <div class="quantity">
+            <div class="swiper-wrapper">
 
-                    <a asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.ProductId">
-                        <i class="fas fa-solid fa-plus"></i>
-                    </a>
+                    @if (ViewData["Suggestions"] as List<Product> is null)
+                    {
+                        foreach (var item in products)
+                        {
+                        <input type="text" hidden id="productId" value="@item.Id" />
+                        <div class="swiper-slide slide">
+                            <div class="image">
+                                <span class="discount">-25%</span>
+                                <img src="/CreatedProductsImages/@item.Image" alt="">
+                                <div class="icons">
+                                    <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id"></a>
+                                    <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
+                                </div>
+                            </div>
+                            <div class="content @modeClass">
+                                <div class="stars">
+                                        @for (var stars = 0; stars < item.Rating; stars++)
+                                        {
+                                        <i class="fas fa-star"></i>
+                                        }
+                                        @if (item.Rating % 1 > 0)
+                                        {
+                                        <i class="fas fa-star-half-alt"></i>
+                                        }
+                                </div>
+                                <p>@item.Name</p>
+                                <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                            </div>
+                        </div>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var item in ViewData["Suggestions"] as List<Product>)
+                        {
+                        <input type="text" hidden id="productId" value="@item.Id" />
+                        <div class="swiper-slide slide">
+                            <div class="image">
+                                <span class="discount">-25%</span>
+                                <img src="/CreatedProductsImages/@item.Image" alt="">
+                                <div class="icons">
+                                    <a class="fas fa-shopping-cart" asp-action="Add" asp-controller="ShoppingCart" asp-route-id="@item.Id"></a>
+                                    <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
+                                </div>
+                            </div>
+                            <div class="content @modeClass">
+                                <div class="stars">
+                                        @for (var stars = 0; stars < item.Rating; stars++)
+                                        {
+                                        <i class="fas fa-star"></i>
+                                        }
+                                        @if (item.Rating % 1 > 0)
+                                        {
+                                        <i class="fas fa-star-half-alt"></i>
+                                        }
+                                </div>
+                                <p>@item.Name</p>
+                                <div class="price">$@item.Price <span>$@item.PreviousPrice</span></div>
+                            </div>
+                        </div>
+                        }
+                    }
 
-                    <input type="text" name="name" value="@item.Quantity" readonly>
-
-                    <a asp-action="Decrease" asp-controller="ShoppingCart" asp-route-id="@item.ProductId">
-                        <i class="fas fa-solid fa-minus"></i>
-                    </a>
-
-                </div>
-
-                <div class="total-price">@Model.CartItems.Where(x => x.ProductId == item.ProductId).Sum(x => x.Quantity * x.Price).ToString("C2")</div>
             </div>
 
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
-        }
-
-        <div class="item grandTotal">
-
-            <div class="ProccedToCheckout"> <a asp-action="ProccedToCheckout" asp-controller="ShoppingCart">check out</a> </div>
-
-            <div class="ClearCart"> <a asp-action="Clear" asp-controller="ShoppingCart"> Clear cart </a> </div>
-
-            <div class="sum-total-price">@Model.GrandTotal.ToString("C2")</div>
         </div>
-    }
-    else
-    {
-        <div class="item emptyCart">
-            <h1 style="color:#dc3545">Your Cart Is Empty</h1>
-        </div>
-    }
+
+    </section>
+
+
 </div>

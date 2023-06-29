@@ -1,36 +1,44 @@
-﻿@model IEnumerable<CosmeticWeb.Models.Product>
+﻿@using CosmeticWeb.Helpers;
+@using CosmeticWeb.ViewModels;
+@model IEnumerable<CosmeticWeb.Models.Product>
 @{
     ViewData["Title"] = "AllProducts";
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
-    select{
+    select {
         font-size: 20px;
         padding: 5px 10px;
         border: 1px solid #f05462;
         cursor: pointer;
     }
-    label{
+
+    label {
         padding-right: 7px;
         font-size: 16px;
     }
 
 </style>
 
-<section class="shop" id="shop">
+<section class="shop @modeClass" id="shop">
 
     <div class="heading">
         <h1>All Products</h1>
         <br />
-        <label >Filter by:</label>
+        <label>Filter by:</label>
 
-        <select id="filter">
-            <option></option>
-            <option value="Price">Price</option>
-            <option value="Rating">Rating</option>
-        </select>
+        <form id="filterForm" asp-action="Filter" asp-controller="Products" method="post">
+            <select id="filter" name="selectedValue">
+                <!-- Update name attribute here -->
+                <option></option>
+                <option value="Price">Price</option>
+                <option value="Rating">Rating</option>
+            </select>
+        </form>
+
 
     </div>
 
@@ -50,7 +58,7 @@
                             <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
                         </div>
                     </div>
-                    <div class="content">
+                    <div class="content @modeClass">
                         <div class="stars">
                             @for (var stars = 0; stars < item.Rating; stars++)
                             {
@@ -86,5 +94,12 @@
                 }
             });
         });
+
+
+        $('#filter').on('change', function () {
+            console.log(1111);
+            $('#filterForm').submit(); // Submit the form when the dropdown value changes
+        });
+
     });
 </script>

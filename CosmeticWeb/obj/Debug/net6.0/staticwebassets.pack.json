@@ -1,0 +1,845 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\E-Commerce_Beauty.bundle.scp.css",
+      "PackagePath": "staticwebassets\\E-Commerce_Beauty.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\dashboard (2).png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\dashboard (2).png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\dashboard.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\dashboard.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\help-web-button.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\help-web-button.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\income.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\income.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\info.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\info.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\notifications.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\notifications.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\payment.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\payment.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\reading-book (1).png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\reading-book (1).png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\school.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\school.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\schools.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\schools.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\search.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\search.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\settings.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\settings.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\students.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\students.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\teacher2.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\teacher2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\teachers.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\teachers.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\thumnails2.jpg",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\thumnails2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\AdminPannelImages\\user.png",
+      "PackagePath": "staticwebassets\\AdminPannelImages\\user.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\BlogsImages\\blog1233722181.jpg",
+      "PackagePath": "staticwebassets\\BlogsImages\\blog1233722181.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\BlogsImages\\blog2232456003.jpg",
+      "PackagePath": "staticwebassets\\BlogsImages\\blog2232456003.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\BlogsImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230337645.jpg",
+      "PackagePath": "staticwebassets\\BlogsImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230337645.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\BlogsImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133235046342.jpg",
+      "PackagePath": "staticwebassets\\BlogsImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133235046342.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\SchoolSystemTableDesign233019797.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\SchoolSystemTableDesign233019797.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\blog2230035438.jpg",
+      "PackagePath": "staticwebassets\\CategoryImages\\blog2230035438.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-1230044740.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-1230044740.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-1232255383.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-1232255383.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-2230059365.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-2230059365.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-3230116798.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-3230116798.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-4230134831.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-4230134831.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-5233940212.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-5233940212.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\category-6230154327.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\category-6230154327.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CategoryImages\\flask232147644.png",
+      "PackagePath": "staticwebassets\\CategoryImages\\flask232147644.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CosmeticTeamMemberImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133231014447.jpg",
+      "PackagePath": "staticwebassets\\CosmeticTeamMemberImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133231014447.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CosmeticTeamMemberImages\\img-4231733683.jpg",
+      "PackagePath": "staticwebassets\\CosmeticTeamMemberImages\\img-4231733683.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CosmeticTeamMemberImages\\img-5231657838.jpg",
+      "PackagePath": "staticwebassets\\CosmeticTeamMemberImages\\img-5231657838.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CosmeticTeamMemberImages\\img-6231635501.jpg",
+      "PackagePath": "staticwebassets\\CosmeticTeamMemberImages\\img-6231635501.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\MicrosoftTeams-image232223502.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\MicrosoftTeams-image232223502.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\Powder2233640986.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\Powder2233640986.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SchoolSystemTableDesign231416337.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SchoolSystemTableDesign231416337.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SchoolSystemTableDesign231426456.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SchoolSystemTableDesign231426456.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SchoolSystemTableDesign231443814.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SchoolSystemTableDesign231443814.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SchoolSystemTableDesign231500216.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SchoolSystemTableDesign231500216.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SchoolSystemTableDesign233107210.png",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SchoolSystemTableDesign233107210.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\SkinCare1232433606.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\SkinCare1232433606.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\arrival-1231108306.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\arrival-1231108306.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\cosmetic1230325570.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\cosmetic1230325570.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\costmetic2235902212.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\costmetic2235902212.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\lipstick235152505.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\lipstick235152505.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\makeup1234525340.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\makeup1234525340.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\makeup2234849438.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\makeup2234849438.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\mascara1230712488.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\mascara1230712488.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\mascara2231156722.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\mascara2231156722.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\powder1233608116.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\powder1233608116.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\powder3233744781.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\powder3233744781.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\powder4233909371.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\powder4233909371.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\powder5234218867.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\powder5234218867.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\product-1232315505.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\product-1232315505.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\product-2230819112.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\product-2230819112.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\product-3231520764.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\product-3231520764.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\product-5231532649.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\product-5231532649.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\product-6231546735.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\product-6231546735.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\CreatedProductsImages\\the-red-version-of-s23-ultra-is-more-like-v0-dJYvPBy0tuhsx4OGfXvcPdNGpKP6sRokRk_jyj6hFaU (1)231821257.jpg",
+      "PackagePath": "staticwebassets\\CreatedProductsImages\\the-red-version-of-s23-ultra-is-more-like-v0-dJYvPBy0tuhsx4OGfXvcPdNGpKP6sRokRk_jyj6hFaU (1)231821257.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230658056.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230658056.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-1231101998.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-1231101998.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-1231520256.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-1231520256.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-2231112824.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-2231112824.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-2231534355.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-2231534355.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-3231120673.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-3231120673.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-3231546396.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-3231546396.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-4231127258.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-4231127258.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-5231135267.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-5231135267.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\GallerieImages\\img-6231147760.jpg",
+      "PackagePath": "staticwebassets\\GallerieImages\\img-6231147760.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230602581.jpg",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\galaxy-s23-ultra-product-image-green-devicepenbackl30-hi-1675266327133230602581.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\home-img-1231358220.png",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\home-img-1231358220.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\home-img-1234129099.png",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\home-img-1234129099.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\home-img-2231420399.png",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\home-img-2231420399.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\home-img-2234112091.png",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\home-img-2234112091.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\HomeSliderImages\\home-img-3234050038.png",
+      "PackagePath": "staticwebassets\\HomeSliderImages\\home-img-3234050038.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\about-bg.jpg",
+      "PackagePath": "staticwebassets\\Images\\about-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-2.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-3.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-4.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-5.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-6.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-7.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\arrival-8.jpg",
+      "PackagePath": "staticwebassets\\Images\\arrival-8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-1.png",
+      "PackagePath": "staticwebassets\\Images\\category-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-2.png",
+      "PackagePath": "staticwebassets\\Images\\category-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-3.png",
+      "PackagePath": "staticwebassets\\Images\\category-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-4.png",
+      "PackagePath": "staticwebassets\\Images\\category-4.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-5.png",
+      "PackagePath": "staticwebassets\\Images\\category-5.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\category-6.png",
+      "PackagePath": "staticwebassets\\Images\\category-6.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\content-img-1.png",
+      "PackagePath": "staticwebassets\\Images\\content-img-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\content-img-2.png",
+      "PackagePath": "staticwebassets\\Images\\content-img-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\content-img-3.png",
+      "PackagePath": "staticwebassets\\Images\\content-img-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\delete-icn.svg",
+      "PackagePath": "staticwebassets\\Images\\delete-icn.svg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\home-img-1.png",
+      "PackagePath": "staticwebassets\\Images\\home-img-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\home-img-2.png",
+      "PackagePath": "staticwebassets\\Images\\home-img-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\home-img-3.png",
+      "PackagePath": "staticwebassets\\Images\\home-img-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-2.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-3.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-4.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-5.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\img-6.jpg",
+      "PackagePath": "staticwebassets\\Images\\img-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\income.png",
+      "PackagePath": "staticwebassets\\Images\\income.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\index.html",
+      "PackagePath": "staticwebassets\\Images\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\item-1.png",
+      "PackagePath": "staticwebassets\\Images\\item-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\item-2.png",
+      "PackagePath": "staticwebassets\\Images\\item-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\item-3.png",
+      "PackagePath": "staticwebassets\\Images\\item-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\logo.png",
+      "PackagePath": "staticwebassets\\Images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\minus.svg",
+      "PackagePath": "staticwebassets\\Images\\minus.svg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\navbar-bg.png",
+      "PackagePath": "staticwebassets\\Images\\navbar-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-1.png",
+      "PackagePath": "staticwebassets\\Images\\pic-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-2.png",
+      "PackagePath": "staticwebassets\\Images\\pic-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-3.png",
+      "PackagePath": "staticwebassets\\Images\\pic-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-4.png",
+      "PackagePath": "staticwebassets\\Images\\pic-4.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-5.png",
+      "PackagePath": "staticwebassets\\Images\\pic-5.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\pic-6.png",
+      "PackagePath": "staticwebassets\\Images\\pic-6.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\plus.svg",
+      "PackagePath": "staticwebassets\\Images\\plus.svg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-2.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-3.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-4.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-5.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-6.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-7.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\product-8.jpg",
+      "PackagePath": "staticwebassets\\Images\\product-8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\service-1.png",
+      "PackagePath": "staticwebassets\\Images\\service-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\service-2.png",
+      "PackagePath": "staticwebassets\\Images\\service-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\service-3.png",
+      "PackagePath": "staticwebassets\\Images\\service-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\team-1.png",
+      "PackagePath": "staticwebassets\\Images\\team-1.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\team-2.png",
+      "PackagePath": "staticwebassets\\Images\\team-2.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\team-3.png",
+      "PackagePath": "staticwebassets\\Images\\team-3.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\Images\\twitter-heart.png",
+      "PackagePath": "staticwebassets\\Images\\twitter-heart.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\TestimonialsImages\\SchoolSystemTableDesign231836216.png",
+      "PackagePath": "staticwebassets\\TestimonialsImages\\SchoolSystemTableDesign231836216.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\TestimonialsImages\\SchoolSystemTableDesign233847676.png",
+      "PackagePath": "staticwebassets\\TestimonialsImages\\SchoolSystemTableDesign233847676.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\UsersProfileImages\\MicrosoftTeams-image (2)230610902.png",
+      "PackagePath": "staticwebassets\\UsersProfileImages\\MicrosoftTeams-image (2)230610902.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\UsersProfileImages\\MicrosoftTeams-image (2)235608367.png",
+      "PackagePath": "staticwebassets\\UsersProfileImages\\MicrosoftTeams-image (2)235608367.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\UsersProfileImages\\lot235853865.jpg",
+      "PackagePath": "staticwebassets\\UsersProfileImages\\lot235853865.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\UsersProfileImages\\me232423567.jpg",
+      "PackagePath": "staticwebassets\\UsersProfileImages\\me232423567.jpg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\UsersProfileImages\\pic-5235708563.png",
+      "PackagePath": "staticwebassets\\UsersProfileImages\\pic-5235708563.png"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\cart-shopping-solid.svg",
+      "PackagePath": "staticwebassets\\cart-shopping-solid.svg"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\css\\AdminPannel.css",
+      "PackagePath": "staticwebassets\\css\\AdminPannel.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\css\\TableStyles.css",
+      "PackagePath": "staticwebassets\\css\\TableStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\memak\\source\\repos\\CosmeticWeb\\CosmeticWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.E-Commerce_Beauty.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.E-Commerce_Beauty.props",
+      "PackagePath": "build\\E-Commerce_Beauty.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.E-Commerce_Beauty.props",
+      "PackagePath": "buildMultiTargeting\\E-Commerce_Beauty.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.E-Commerce_Beauty.props",
+      "PackagePath": "buildTransitive\\E-Commerce_Beauty.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

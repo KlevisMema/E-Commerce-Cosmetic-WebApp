@@ -1,10 +1,12 @@
-﻿using CosmeticWeb.Data;
+﻿#region Usings
+using CosmeticWeb.Data;
 using CosmeticWeb.Helpers;
 using CosmeticWeb.Models;
 using CosmeticWeb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+#endregion
 
 namespace CosmeticWeb.Controllers
 {
@@ -27,7 +29,7 @@ namespace CosmeticWeb.Controllers
         #region Shfaq shopping cart me produkte 
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var cart = HttpContext.Session.GetJson<List<CartItemViewModel>>("ShoppingCart") ?? new List<CartItemViewModel>();
 
@@ -38,6 +40,34 @@ namespace CosmeticWeb.Controllers
             };
 
             ViewData["grand_total"] = cartVM.GrandTotal;
+
+            if (TempData["CategoryId"] is not null)
+            {
+                Guid? categoryid = (Guid)TempData["CategoryId"];
+
+                if (categoryid.ToString() != "")
+                {
+                    var products = await _context.Products!.Include(x => x.Category).Where(x => x.CategoryId == categoryid).ToListAsync();
+
+                    Random random = new();
+
+                    ViewData["Suggestions"] = products.OrderBy(x => random.Next()).Take(4).ToList();
+                }
+            }
+            else
+            {
+                Random random = new();
+
+                var randomCategoryId = cart.Select(x => x.ProductCategoryId).OrderBy(x => random.Next()).FirstOrDefault();
+
+                var products = await _context.Products!.Include(x => x.Category)
+                                                       .Where(x => x.CategoryId == randomCategoryId)
+                                                       .ToListAsync();
+
+                ViewBag.SuggestionsV2 = products.OrderBy(x => random.Next()).Take(4);
+            }
+
+            
 
             return View(cartVM);
         }
@@ -66,6 +96,8 @@ namespace CosmeticWeb.Controllers
             }
 
             HttpContext.Session.SetJson("ShoppingCart", cart);
+
+            TempData["CategoryId"] = product!.CategoryId;
 
             return RedirectToAction("Index");
         }
@@ -138,6 +170,7 @@ namespace CosmeticWeb.Controllers
             ViewData["grand_total"] = cart!.Sum(x => x.Price * x.Quantity);
 
             return View();
+
         }
 
         #endregion
@@ -197,5 +230,6 @@ namespace CosmeticWeb.Controllers
         }
 
         #endregion
+
     }
 }

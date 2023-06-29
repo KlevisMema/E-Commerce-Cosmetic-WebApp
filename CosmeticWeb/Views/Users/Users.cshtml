@@ -1,5 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@model IEnumerable<IdentityUser>
+﻿@using CosmeticWeb.ViewModels;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<UsersViewModel>
 
 @{
     ViewData["Title"] = "Users";
@@ -14,6 +15,8 @@
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Email Confirmed</th>
+                <th>Roles</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +27,13 @@
                     <td>@item.UserName</td>
                     <td>@item.Email</td>
                     <td>@item.EmailConfirmed</td>
+                    <td>
+                       @item.Role
+                    </td>
+                    <td>
+                        <a asp-action="GetEditUser"  asp-route-id="@item.Id" class="btn">Edit</a>
+                        <a asp-action="DeleteUser" asp-route-id="@item.Id" class="btn">Delete</a>
+                    </td>
                 </tr>
             }
         <tbody>

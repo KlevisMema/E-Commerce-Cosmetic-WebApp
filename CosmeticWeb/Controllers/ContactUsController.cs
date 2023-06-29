@@ -8,6 +8,7 @@ namespace CosmeticWeb.Controllers
 {
     public class ContactUsController : Controller
     {
+        #region Injekto databazen ne kontroller 
         private readonly ApplicationDbContext _context;
 
         public ContactUsController
@@ -17,19 +18,25 @@ namespace CosmeticWeb.Controllers
         {
             _context = context;
         }
+        #endregion
 
+        #region kthen pamjen Index
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ContactUs!.ToListAsync());
         }
+        #endregion
 
+        #region forma e contact us
         [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
+        #region krijon contact us 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "User")]
@@ -45,7 +52,9 @@ namespace CosmeticWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region shfaq view e fshirjes "Are you sure you want to delete"
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -63,7 +72,9 @@ namespace CosmeticWeb.Controllers
 
             return View(contactUs);
         }
+        #endregion
 
+        #region konfirmohet fshirja
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
         [HttpPost, ActionName("Delete")]
@@ -82,10 +93,6 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ContactUsExists(Guid id)
-        {
-            return _context.ContactUs!.Any(e => e.Id == id);
-        }
+        #endregion
     }
 }

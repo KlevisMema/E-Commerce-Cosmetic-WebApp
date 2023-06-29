@@ -1,5 +1,210 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap");
 
+
+/* Bright and dark mode related  */
+:root {
+    --primary-color: #fff;
+    --secondary-color: #262626;
+    --border-bottom-white-color: #fff;
+    --border-bottom-black-color: #f05462;
+}
+
+.dark-mode {
+    background-color: var(--secondary-color) !important;
+    /* border-bottom: var(--border-bottom-black-color) !important;*/
+}
+
+.bright-mode {
+    background-color: var(--primary-color);
+    border-bottom: var(--border-bottom-white-color);
+}
+
+.dark-mode h1, .dark-mode p, .dark-mode label, .dark-mode .box h3, .dark-mode h3 {
+    color: grey !important;
+}
+
+.dark-mode .credit {
+    border-top: 1px solid grey !important;
+}
+
+
+.dark-mode .category-box, .dark-mode .service-box {
+    background: #222 !important;
+    cursor: pointer;
+}
+
+.dark-mode .swiper-slide .content {
+    padding-bottom: 2rem;
+    border: 1px solid grey;
+}
+
+.dark-mode .stars i {
+    color: #f05462 !important;
+}
+
+.dark-mode .icons a, .dark-mode .icons div {
+    background: #222 !important;
+    color: white !important;
+}
+
+    .dark-mode .icons a:hover, .dark-mode .icons div:hover {
+        color: #f05462 !important;
+    }
+
+.dark-mode .icons .fa-sun:hover {
+    transform: rotate(180deg);
+}
+
+.dark-mode .icons .fa-moon:hover {
+    transform: rotateY(180deg);
+}
+
+.dark-mode .icons .fa-heart:hover {
+    transform: rotateX(180deg);
+}
+
+.empty-wishList {
+    height: 300px !important;
+}
+
+
+    .empty-wishList h1 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 35px;
+    }
+
+.dark-mode .slide .image .icons a i {
+    background: #222 !important;
+}
+
+.dark-mode .team-box {
+    border: 1px solid grey !important;
+}
+
+.dark-mode .quantity input {
+    background-color: transparent !important;
+    color: white;
+}
+
+.dark-mode .description span {
+    color: white;
+}
+
+.dark-mode .total-price, .dark-mode .sum-total-price {
+    color: white;
+}
+
+.dark-mode .title {
+    color: white;
+}
+
+.dark-mode .itemCheckOut form input {
+    background: transparent;
+    border: none;
+    border-bottom: grey 1px solid;
+    color: white;
+}
+
+.dark-mode .itemCheckOut form {
+    padding: 20px 0px;
+}
+
+.dark-mode .search-form {
+    background: transparent !important;
+    border-bottom: 1px solid grey !important;
+    padding: 13px 5px;
+}
+
+#home .dark-mode a,
+#about .dark-mode a,
+#arrivals .dark-mode a,
+.dark-mode .icons button,
+.dark-mode .box .share a {
+    background: transparent !important;
+    border: 1px solid #f05462 !important;
+    color: #f05462 !important;
+}
+
+    #home .dark-mode a:hover,
+    #about .dark-mode a:hover,
+    #arrivals .dark-mode a:hover,
+    .dark-mode .box .share a:hover {
+        background-color: #f05462 !important;
+        color: #fff !important;
+    }
+
+.dark-mode .service-box {
+    transition: all ease-in-out 0.2s;
+}
+
+    .dark-mode .service-box:hover {
+        background-color: #f05462 !important;
+        border: none;
+        transform: scale(1.1);
+    }
+
+        .dark-mode .service-box:hover h3,
+        .dark-mode .service-box:hover > p {
+            color: white !important;
+        }
+
+.dark-mode #filter {
+    background: transparent;
+    color: white;
+}
+
+    .dark-mode #filter option {
+        color: white;
+        cursor: pointer;
+    }
+
+    .dark-mode #filter option {
+        background-color: #f05462;
+    }
+
+        .dark-mode #filter option:hover {
+            background-color: transparent !important;
+        }
+
+.dark-mode #account input,
+.dark-mode #registerForm input,
+.dark-mode #registerForm select {
+    background: transparent !important;
+    color: gray !important;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+    .dark-mode #account input:focus,
+    .dark-mode #registerForm input:focus,
+    .dark-mode #registerForm option:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+.dark-mode #login-submit,
+.dark-mode #registerSubmit {
+    background: transparent !important;
+    border: 1px solid #f05462 !important;
+    color: #f05462 !important;
+}
+
+    .dark-mode #login-submit:hover,
+    .dark-mode #registerSubmit:hover {
+        background-color: #f05462 !important;
+        color: #fff !important;
+    }
+
+.dark-mode .social-icons-external h4 {
+    color: gray;
+}
+
+.dark-mode hr {
+    color: #f05462;
+}
+
+/* End of dark or bright mode */
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -40,6 +245,63 @@ a {
 section {
     padding: 5rem 9%;
 }
+
+.shopping-cart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
+
+.shopping-cart-checkout {
+    height: 600px !important;
+}
+
+.social-icons-external h4 {
+    font-size: 17px;
+}
+
+.social-icons {
+    display: flex;
+    margin: 20px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+    .social-icons i {
+        cursor: pointer;
+        color: #f05462;
+        font-size: 30px;
+        transition: 0.3s all ease-in-out;
+        margin: 0 15px;
+    }
+
+    .social-icons button:hover {
+        background-color: #f05462;
+        color: white;
+    }
+
+        .social-icons button:hover > i {
+            color: white;
+        }
+
+.social-icons-external {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .social-icons-external h4 {
+        font-weight: 500;
+        color: #000;
+    }
+
+.social-icons button {
+    border: 1px solid #f05462;
+    background-color: transparent;
+    padding: 15px;
+}
+
 
 .btn {
     display: inline-block;
@@ -257,7 +519,7 @@ section {
         .home .slide.active {
             display: -webkit-box;
             display: -ms-flexbox;
-            display: flex;
+            /*display: flex;*/
         }
 
         .home .slide .content {
@@ -565,8 +827,8 @@ section {
             }
 
 .team {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #f5f5f5), color-stop(50.1%, #fff));
-    background: linear-gradient(#f5f5f5 50%, #fff 50.1%);
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #f5f5f5), color-stop(50.1%, #fff));
+    background: linear-gradient(#f5f5f5 50%, #fff 50.1%);*/
 }
 
     .team .box-container {
@@ -1072,7 +1334,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2% 0px;
+    padding: 2% 0px;
     font-size: 16px;
 }
 
@@ -1176,7 +1438,7 @@ section {
         }
 
 .shopping-cart-Form {
-    height: 450px;
+    height: 470px;
 }
 
 .itemCheckOut {
@@ -1236,7 +1498,7 @@ section {
 
 .image {
     margin-right: 50px;
-    margin-top: -10px;
+    /* margin-top: -10px;*/
 }
 
 .description {
@@ -1344,4 +1606,76 @@ input:focus {
     .buttons {
         margin-right: 20px;
     }
+}
+
+#description {
+    height: 100px;
+    transition: all ease-in-out 0.2s;
+}
+
+.readMoreBtn {
+    background: none;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid;
+    transition: all ease-in-out 0.2s;
+}
+
+    .readMoreBtn:hover {
+        color: #f05462;
+        letter-spacing: 2px;
+    }
+
+.tdTable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#paypal-btn .zoid-outlet {
+    padding-top: 20px;
+    width: 100% !important;
+}
+
+.paypal-button-tagline {
+    height: 45px !important;
+}
+
+
+.thankYou {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+    .thankYou h1 {
+        text-transform: uppercase;
+        font-size: 30px;
+        letter-spacing: 1px;
+    }
+
+    .thankYou svg {
+        width: 200px;
+        color: azure;
+    }
+
+    .thankYou .succsessShoppig {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+        .thankYou .succsessShoppig svg {
+            filter: invert(40%) sepia(35%) saturate(2788%) hue-rotate(326deg) brightness(105%) contrast(88%);
+        }
+
+.search-form button {
+    background: transparent;
 }

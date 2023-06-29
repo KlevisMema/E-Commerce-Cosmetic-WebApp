@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "GetRoles";
+    Layout = "~/Views/Shared/_AdminPannel.cshtml";
+}
+
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <br />
+        <thead>
+            <tr>
+                <td>Id</td>
+                <th>Role Name</th>
+                <th>Normalized Name</th>
+                <th>
+                    <a asp-action="CreateRole" asp-controller="Users" class="btn btn-table">Create</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.NormalizedName</td>
+                    @if (item.Name == "Admin" || item.Name == "Employee" || item.Name == "User")
+                    {
+
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="EditRole" asp-controller="Users" asp-route-id="@item.Id" class="btn">Edit</a>
+                            <a asp-action="GetDelete" asp-controller="Users" asp-route-id="@item.Id" class="btn">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>

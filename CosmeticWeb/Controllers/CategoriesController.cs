@@ -28,6 +28,7 @@ namespace CosmeticWeb.Controllers
         {
             return View();
         }
+        #region Krijon kategorine me te dhenat nga forma
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,7 +57,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(category);
         }
+        #endregion
 
+        #region Shfaq formen per te edituar nje kategori
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -72,11 +75,14 @@ namespace CosmeticWeb.Controllers
             }
             return View(category);
         }
+        #endregion
+
+        #region Edito kategorine me te dhenat nga forma
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,CreatedAt,ModifiedAt")] Category category)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,CreatedAt,ImageFile,ModifiedAt")] Category category)
         {
             if (id != category.Id)
                 return NotFound();
@@ -104,7 +110,8 @@ namespace CosmeticWeb.Controllers
                     }
 
                     category.ModifiedAt = DateTime.UtcNow;
-                    _context.Update(category);
+                   
+                    _context.Entry(previousPath).CurrentValues.SetValues(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -118,6 +125,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(category);
         }
+        #endregion
+
+        #region Shfaq formen per te fshire kategorine
 
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
@@ -136,7 +146,9 @@ namespace CosmeticWeb.Controllers
 
             return View(category);
         }
+        #endregion
 
+        #region Fshin kategorine kur useri e konfirmon 
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
         [HttpPost, ActionName("Delete")]
@@ -164,19 +176,25 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region Shfaq produket ne momntin e klikimit te kategorise
         [Authorize]
         public async Task<IActionResult> Products(Guid id)
         {
             var products = await _context.Products!.Include(x => x.Category).Where(x => x.CategoryId == id).ToListAsync();
             var categoryName = await _context.Categories!.FirstOrDefaultAsync(x => x.Id == id);
-            ViewBag.CategoyName = categoryName!.Name;
+            //ViewBag.CategoyName = categoryName!.Name;
+            ViewData["CategoyName"] = categoryName.Name;
             return View(products);
         }
+        #endregion
 
+        #region Kthen true ose false nese kategoria me at id ekziston
         private bool CategoryExists(Guid id)
         {
             return _context.Categories!.Any(e => e.Id == id);
         }
+        #endregion
     }
 }

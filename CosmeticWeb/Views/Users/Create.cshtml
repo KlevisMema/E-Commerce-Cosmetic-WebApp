@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Create a new product</h2>
+        <h2>Create a new User</h2>
         <br />
         <br />
         <form asp-action="Create" enctype="multipart/form-data">
@@ -40,3 +40,8 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,7 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using CosmeticWeb.Helpers;
+<!DOCTYPE html>
 
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <title>@ViewBag.Title</title>
 </head>
 <body>
     <div class="_side-menu">
         <div class="brand-name">
-            <a asp-action="Index" asp-controller="Admin" class="logo"> <img src="/Images/logo.png" /> </a>
+            <a asp-action="Index" asp-controller="Admin" class="logo"> <img src="" /> </a>
         </div>
-        <ul>
+        <ul class="links">
             <li><img src="/AdminPannelImages/teacher2.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Orders"><span>ORDERS</span></a> </li>
             <li><img src="/AdminPannelImages/school.png" alt="">&nbsp;<a asp-action="Index" asp-controller="OrderItems"><span>ORDER ITEMS</span></a> </li>
             <li><img src="/AdminPannelImages/payment.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Subscribtions"><span>SUBSCRIPTIONS</span></a> </li>
@@ -34,16 +37,14 @@
             {
                 <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Users"><span>EMPLOYEES</span></a> </li>
                 <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Users" asp-controller="Users"><span>USERS</span></a> </li>
+                <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="GetRoles" asp-controller="Users"><span>ROLES</span></a> </li>
             }
+            <li><img src="/AdminPannelImages/settings.png" alt="">&nbsp;<a asp-action="Index" asp-controller="Home"><span>Users Page</span></a> </li>
         </ul>
     </div>
     <div class="_container">
         <div class="_header">
             <div class="_nav">
-               @* <div class="_search">
-                    <input type="text" placeholder="Search..">
-                    <button type="submit"><img src="/AdminPannelImages/search.png" alt=""></button>
-                </div>*@
                 <div class="user">
                     @if (User.IsInRole("Admin"))
                     {
@@ -63,10 +64,14 @@
         </div>
         @RenderBody()
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,32 +1,84 @@
-﻿@model CosmeticWeb.ViewModels.ProceedCheckOutViewModel
+﻿@using CosmeticWeb.Helpers;
+@model CosmeticWeb.ViewModels.ProceedCheckOutViewModel
 
 @{
     ViewData["Title"] = "ProccedToCheckout";
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
 }
 
-<div class="shopping-cart shopping-cart-Form">
+<div class="shopping-cart-wrapper shopping-cart-checkout @modeClass">
 
-    <div class="title">
-        Check Out
-    </div>
+    <div class="shopping-cart shopping-cart-Form @modeClass">
 
-    <div class="item itemCheckOut">
+        <div class="title">
+            Check Out
+        </div>
 
-        <form asp-action="ProccedToCheckout" asp-controller="ShoppingCart" method="post">
+        <div class="item itemCheckOut">
 
-            <input type="text" asp-for="Name" placeholder="Name" autocomplete="on" required/>
+            <form asp-action="ProccedToCheckout" asp-controller="ShoppingCart" method="post">
 
-            <input type="email" asp-for="Email" placeholder="Email" autocomplete="on" required />
+                <input type="text" asp-for="Name" placeholder="Name" autocomplete="on" required />
 
-            <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" autocomplete="on" required />
+                <input type="email" asp-for="Email" placeholder="Email" autocomplete="on" required />
 
-            <input type="text" asp-for="Address" placeholder="Adress" autocomplete="on" required />
+                <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" autocomplete="on" required />
 
-            <input type="submit" value="Check Out" class="btn btn-default" />
+                <input type="text" asp-for="Address" placeholder="Adress" autocomplete="on" required />
 
-            <a asp-action="Index" class="btn" >Go back</a>
+                <input type="submit" value="Check Out" class="btn btn-default" id="checkout_btn" />
+                <div id="paypal-btn"></div>
 
-        </form>
+                <a asp-action="Index" class="btn">Go back</a>
+
+            </form>
+        </div>
+
     </div>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<script>
+    var checkout_button = document.getElementById("checkout_btn");
+    var paypal_button = document.getElementById("paypal-btn");
+    checkout_button.style.display = "none";
+    var _total = @ViewData["grand_total"];
+
+    paypal.Button.render({
+        //Configure environment
+        env: 'sandbox',
+        client: {
+            sandbox: 'sandbox key'
+        },
+        //Customize button
+        locale: 'en_US',
+        style: {
+            size: 'medium',
+            color: 'gold',
+            shape: 'rect'
+        },
+        commit: true,
+        //Set up a payment ang return an object with payment details
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: _total,
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        //Execute the payment 
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                checkout_button.style.display = "unset";
+                paypal_button.style.display = "none";
+            });
+        }
+    }, '#paypal-btn');
+
+</script>

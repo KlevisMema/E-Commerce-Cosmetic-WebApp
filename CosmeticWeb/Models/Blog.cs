@@ -13,12 +13,10 @@ namespace CosmeticWeb.Models
 
         #region Emri i blogut
         [Required(ErrorMessage = "Blog name is required!")]
-        [StringLength(maximumLength:20, MinimumLength = 4)]
         public string? Name { get; set; }
         #endregion
 
         #region Pershkrimi i blogut
-        [StringLength(50)]
         [Required(ErrorMessage = "Description is required!")]
         public string? Description { get; set; }
         #endregion

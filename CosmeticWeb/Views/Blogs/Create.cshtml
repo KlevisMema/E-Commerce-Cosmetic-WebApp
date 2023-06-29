@@ -24,7 +24,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" placeholder="Blog description..." />
+                <textarea asp-for="Description" class="form-control" placeholder="Blog description..." rows="2" cols="50"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <br />
@@ -42,7 +42,9 @@
         </form>
     </div>
 </div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
+

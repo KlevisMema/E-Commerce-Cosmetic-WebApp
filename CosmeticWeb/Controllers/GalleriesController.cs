@@ -8,6 +8,7 @@ namespace CosmeticWeb.Controllers
 {
     public class GalleriesController : Controller
     {
+        #region Injekto databazen dhe IWebHostEnvironment per imazhet ne kontroller
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _HostEnvironment;
 
@@ -20,19 +21,25 @@ namespace CosmeticWeb.Controllers
             _context = context;
             _HostEnvironment = hostEnvironment;
         }
+        #endregion
 
+        #region shfaq pamjen Index ne formen e listes
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Galleries!.ToListAsync());
         }
+        #endregion
 
+        #region shfaq formen e krijimit 
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
+        #region krijohet nje foto e re ne gallery dhe ruhet ne databaze
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -57,7 +64,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(gallery);
         }
+        #endregion
 
+        #region shfaq formen e editimit
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -70,7 +79,9 @@ namespace CosmeticWeb.Controllers
                 return NotFound();
             return View(gallery);
         }
+        #endregion
 
+        #region editon gallerin
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -117,7 +128,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(gallery);
         }
+        #endregion
 
+        #region shfaq view e "Are you sure you want to delete"
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -131,7 +144,9 @@ namespace CosmeticWeb.Controllers
 
             return View(gallery);
         }
+        #endregion
 
+        #region fshirja eshte konfirmuar
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
         [HttpPost, ActionName("Delete")]
@@ -156,10 +171,13 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region kthen true ose false nese ajo foto me at id ekziston apo jo
         private bool GalleryExists(Guid id)
         {
             return _context.Galleries!.Any(e => e.Id == id);
         }
+        #endregion
     }
 }

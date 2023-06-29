@@ -32,7 +32,7 @@ namespace CosmeticWeb.Models
 
         #region Adressa e klientit
         [Display(Name = "Adress")]
-        [StringLength(20, MinimumLength = 4)]
+        [StringLength(100, MinimumLength = 4)]
         [Required(ErrorMessage = "Address is required!")]
         public string? CustomerAddress { get; set; }
         #endregion

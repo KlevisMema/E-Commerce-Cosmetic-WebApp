@@ -115,7 +115,7 @@ namespace CosmeticWeb.Controllers
 
                     blog.DateModified = DateTime.UtcNow;
                     _context.Entry(previousPath).CurrentValues.SetValues(blog);
-                    _context.Update(blog);
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

@@ -19,7 +19,7 @@ namespace CosmeticWeb.Models
 
         #region Cmimi produktit
         [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "Has to be decimal with two decimal points")]
-        [Range(0, 2000, ErrorMessage = "The maximum possible value should be upto 5 digits")]
+        [Range(0, 2000, ErrorMessage = "The product can't have a value more than 2000.")]
         [Required(ErrorMessage = "Product price is required")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
@@ -27,7 +27,7 @@ namespace CosmeticWeb.Models
 
         #region Cmimi i meparshem i produktit
         [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "Has to be decimal with two decimal points")]
-        [Range(0, 2000, ErrorMessage = "The maximum possible value should be upto 5 digits")]
+        [Range(0, 2000, ErrorMessage = "The product can't have a value more than 2000.")]
         [Required(ErrorMessage = "Product previous price is required")]
         [Display(Name = " Previous price ")]
         [DataType(DataType.Currency)]

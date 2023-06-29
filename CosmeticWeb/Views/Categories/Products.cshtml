@@ -1,13 +1,15 @@
-﻿@model List<CosmeticWeb.Models.Product>
+﻿@using CosmeticWeb.Helpers;
+@model List<CosmeticWeb.Models.Product>
 @{
     ViewData["Title"] = "Products";
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
 }
 
-<section class="shop" id="shop">
+<section class="shop @modeClass" id="shop">
 
     <div class="heading">
-        <h1>products in @ViewBag.CategoyName category</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur officia beatae distinctio minus optio?</p>
+        <h1>products in @ViewData["CategoyName"]!.ToString() category</h1>
+        <p>Give your body the nourishment it needs and take your health to the next level.</p>
     </div>
 
     <div class="swiper products-slider">
@@ -26,9 +28,9 @@
                             <a class="fas fa-heart" id="" asp-action="Create" asp-controller="Wishlists" asp-route-productId="@item.Id"></a>
                         </div>
                     </div>
-                    <div class="content">
+                    <div class="content @modeClass">
                         <div class="stars">
-                            @for (var stars = 0; stars < item.Rating; stars++)
+                            @for (var stars = 1; stars < item.Rating; stars++)
                             {
                                 <i class="fas fa-star"></i>
                             }

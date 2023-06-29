@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_AdminPannel.cshtml";
 }
 
+<style>
+    .tdTable {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+</style>
+
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
@@ -29,9 +39,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
                 </th>
                 <th>
                     <a asp-action="Create" class="btn btn-table">Create New</a>
@@ -63,11 +70,8 @@
                     <td>
                         <img src="/CosmeticTeamMemberImages/@item.Image" width="60px" />
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn">Edit</a> |
+                    <td class="tdTable">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn">Edit</a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn">Delete</a>
                     </td>
                 </tr>

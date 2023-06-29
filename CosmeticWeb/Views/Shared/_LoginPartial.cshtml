@@ -1,22 +1,112 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using CosmeticWeb.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject ApplicationDbContext _db;
+
+@{
+    var user = _db.Users.FirstOrDefault(x => x.UserName == User.Identity!.Name);
+}
+
+<style>
+    .imgProfile {
+        /*  display: flex;
+                align-items: center;
+                justify-content: center;*/
+        text-align: center;
+        background: none !important;
+        height: 50px;
+    }
+</style>
 
 <div class="icons">
     @if (SignInManager.IsSignedIn(User))
     {
-
-        <a href="#" class="ManageAccount">Welcome</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="ManageAccount" asp-action="Index" asp-controller="Admin">Dashboard</a>
+        }
+        <a href="/Identity/Account/Manage" class="ManageAccount imgProfile">
+            @if (String.IsNullOrEmpty(user.Image))
+            {
+                <img src="/AdminPannelImages/user.png" width="45px" style="border-radius:100px" />
+            }
+            else
+            {
+                <img src="~/UsersProfileImages/@user.Image" width="55px" style="border-radius:100px" />
+            }
+        </a>
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <a asp-action="Index" asp-controller="Wishlists" class="fas fa-heart"></a>
         <a asp-action="Index" asp-controller="ShoppingCart" class="fas fa-shopping-cart"></a>
+        <a asp-action="Index" asp-controller="Wishlists" class="fas fa-heart"></a>
+        <a id="darkModeIcon" class="fas fa-moon"></a>
+        <a id="whiteModeIcon" class="fas fa-sun"></a>
+
     }
     else
     {
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-
         <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-sharp fa-solid fa-user"></a>
+        <a id="darkModeIcon" class="fas fa-moon"></a>
+        <a id="whiteModeIcon" class="fas fa-sun"></a>
     }
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+    function Expand() {
+
+        var desciption = document.getElementById("description");
+
+
+        desciption.style.height = "100%";
+    }
+
+    $(document).ready(function () {
+
+        // Get the dark mode icon element
+        var darkModeIcon = document.getElementById('darkModeIcon');
+        var whiteModeIcon = document.getElementById('whiteModeIcon');
+
+        // Attach the click event handler
+        darkModeIcon.addEventListener('click', function () {
+            // Get the current URL
+            var currentUrl = window.location.href;
+
+            // Make an AJAX request to the server, including the current URL as a parameter
+            $.ajax({
+                type: 'POST',
+                url: '/Mode/SetModeNight', // Replace with your server endpoint
+                data: { url: currentUrl, mode: "dark-mode" },
+                success: function (data) {
+                    // Refresh the page
+                    location.reload();
+                }
+            });
+        });
+
+        // Attach the click event handler
+        whiteModeIcon.addEventListener('click', function () {
+            // Get the current URL
+            var currentUrl = window.location.href;
+
+            // Make an AJAX request to the server, including the current URL as a parameter
+            $.ajax({
+                type: 'POST',
+                url: '/Mode/SetModeBright', // Replace with your server endpoint
+                data: { url: currentUrl, mode: "bright-mode" },
+                success: function (data) {
+                    // Refresh the page
+                    location.reload();
+                }
+            });
+        });
+
+    });
+
+
+</script>

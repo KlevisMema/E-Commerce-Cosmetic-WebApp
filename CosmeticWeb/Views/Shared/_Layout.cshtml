@@ -1,5 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> SignInManager
+﻿@using CosmeticWeb.Helpers;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,22 +12,26 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CosmeticWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 </head>
 <body>
 
-    <header class="header">
+    <header class="header @ModeHelper.GetModeClass(Context.Request)">
 
         <a asp-action="Index" asp-controller="Home" class="logo"> <img src="/Images/logo.png"> </a>
 
         @if (SignInManager.IsSignedIn(User))
         {
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="search here..." id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
-            </form>
+                <form asp-action="Search" asp-controller="Products" class="search-form" method="post">
+                    <input type="text" name="productName" placeholder="search products here..." id="search-box">
+                    <button type="submit">
+                        <label for="search-box" class="fas fa-search"></label>
+                    </button>
+                </form>
         }
 
         <partial name="~/Views/Shared/_LoginPartial.cshtml" />
@@ -50,11 +55,13 @@
         <a href="#blogs">blogs</a>
     </nav>
 
-    @RenderBody()
+    <div class="allContent">
+        @RenderBody()
+    </div>
 
-    <section class="footer">
+    <section class="footer @ModeHelper.GetModeClass(Context.Request)">
 
-        <div class="box-container">
+        <div class="box-container  @ModeHelper.GetModeClass(Context.Request)">
 
             <div class="box">
                 <h3>quick links</h3>
@@ -112,6 +119,11 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         lightGallery(document.querySelector('.gallery .lightbox'));
     </script>

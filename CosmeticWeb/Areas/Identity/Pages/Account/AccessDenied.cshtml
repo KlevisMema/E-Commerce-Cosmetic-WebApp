@@ -1,8 +1,10 @@
 ﻿@page
+@using CosmeticWeb.Helpers;
 @using WebApplication1.Areas.Identity.Pages.Account;
 @model AccessDeniedModel
 @{
     ViewData["Title"] = "Access denied";
+    string modeClass = ModeHelper.GetModeClass(Request);
 }
 
 <style>
@@ -34,7 +36,7 @@
 
 </style>
 
-<div class="accessDenied">
+<div class="accessDenied @modeClass">
     <h1> <- @ViewData["Title"] -> </h1>
     <hr />
     <p>You do not have access to this resource.</p>

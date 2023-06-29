@@ -1,22 +1,13 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@using CosmeticWeb.Helpers;
+@using Microsoft.AspNetCore.Identity;
+@using System.Globalization;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminPannel.cshtml";
+    string previousMonth = @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month - 1);
+    string currentMonth = @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 }
-
-<style>
-    .recent-payments table tbody tr {
-        display: flex;
-        align-items: center;
-        justify-content: space-between
-    }
-
-    .new-students table tbody tr {
-        display: flex;
-        align-items: center;
-    }
-</style>
 
 <div class="content">
 
@@ -24,7 +15,7 @@
 
         <div class="card">
             <div class="box">
-                <h1>@ViewBag.Users</h1>
+                <h1 id="users"></h1>
                 <h3>Users</h3>
             </div>
             <div class="icon-case">
@@ -34,7 +25,17 @@
 
         <div class="card">
             <div class="box">
-                <h1>@ViewBag.Employees</h1>
+                <h1 id="sales" style="font-size:20px"></h1>
+                <h3>Sales @previousMonth vs @currentMonth </h3>
+            </div>
+            <div class="icon-case">
+                <img src="/Images/income.png" alt="">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <h1 id="employees"></h1>
                 <h3>Employees</h3>
             </div>
             <div class="icon-case">
@@ -44,7 +45,7 @@
 
         <div class="card">
             <div class="box">
-                <h1>@ViewBag.Subtitles</h1>
+                <h1 id="subsrciptions"></h1>
                 <h3>Subsrciptions</h3>
             </div>
             <div class="icon-case">
@@ -56,7 +57,7 @@
         {
             <div class="card">
                 <div class="box">
-                    <h1>@ViewBag.Income</h1>
+                    <h1 id="income"></h1>
                     <h3>Income</h3>
                 </div>
                 <div class="icon-case">
@@ -74,20 +75,20 @@
                 <h2>Recent Payments</h2>
                 <a asp-action="Index" asp-controller="OrderItems" class="btn">View All</a>
             </div>
-            <table>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Customer Name</th>
-                    <th>Price</th>
-                </tr>
-                @foreach (var item in ViewBag.RecentOrders as List<OrderItem>)
-                {
+            <br />
+            <table id="recent-orders">
+                <thead>
                     <tr>
-                        <td>@item.Product!.Name</td>
-                        <td>@item.Order!.CustomerName</td>
-                        <td>@item.Price</td>
+                        <th>Id</th>
+                        <th>Order Id</th>
+                        <th>Price</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Customer</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
 
@@ -98,21 +99,223 @@
                     <h2>New Users</h2>
                     <a asp-action="Users" asp-controller="Users" class="btn">View All</a>
                 </div>
-                <table>
-                    <tr>
-                        <th>Profile</th>
-                        <th>Name</th>
-                    </tr>
-                    @foreach (var item in ViewBag.Recentusers as IEnumerable<IdentityUser>)
-                    {
+
+                <br />
+
+                <table id="recent-users">
+                    <thead>
                         <tr>
-                            <td><img src="/AdminPannelImages/user.png" alt=""></td>
-                            <td>@item.UserName</td>
+                            <th>Name</th>
+                            <th>Confirmed</th>
                         </tr>
-                    }
+                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
         }
 
+        <br />
+
+        <div class="recent-payments">
+
+            <div class="title">
+                <h2>All products</h2>
+            </div>
+
+            <br />
+
+            <table id="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+
     </div>
+
 </div>
+
+<div class="content canvas">
+    <canvas id="myChart"></canvas>
+    <canvas id="myLineChart"></canvas>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $.getJSON("/api/AdminApi/get-users", function (data) {
+            var users = document.getElementById("users");
+            users.innerHTML = data;
+        });
+
+        $.getJSON("/api/AdminApi/get-employees", function (data) {
+            var employees = document.getElementById("employees");
+            employees.innerHTML = data;
+        });
+
+        $.getJSON("/api/AdminApi/get-subsrciptions", function (data) {
+            var subsrciptions = document.getElementById("subsrciptions");
+            subsrciptions.innerHTML = data;
+        });
+
+        $.getJSON("/api/AdminApi/get-income", function (data) {
+            var income = document.getElementById("income");
+
+            var parseToStrig = data.toString();
+
+            var twoPlacedFloat = parseFloat(parseToStrig).toFixed(3) // konverton shumen me 3 shifra pas presjes
+
+            income.innerHTML =  "$" + twoPlacedFloat;
+        });
+
+        $('#recent-orders').DataTable({
+            ajax: {
+                url: '/api/AdminApi/get-recent-payments',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'orderId' },
+                { data: 'price' },
+                { data: 'productName' },
+                { data: 'quantity' },
+                { data: 'user' }
+            ]
+        });
+
+        $('#recent-users').DataTable({
+            ajax: {
+                url: '/api/AdminApi/get-recent-users',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'userName' },
+                { data: 'emailConfirmed' }
+            ]
+        });
+
+        $('#products-table').DataTable({
+            ajax: {
+                url: '/api/AdminApi/all-products',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'name' },
+                { data: 'price' },
+                { data: 'rating' }
+            ]
+        });
+
+        $.getJSON("/api/AdminApi/orders-by-months", function (data) {
+
+            let ctx = document.getElementById('myChart').getContext('2d');
+
+            let months = data.map(x => x.month); // marr vetem muajt nga data
+
+            let orders = data.map(x => x.numberOfOrders); // marr vetem orderat nga data
+
+            let colors = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'];
+
+
+            let myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months, // përdorim vargun e muajve si labela për chartin
+                    datasets: [{
+                        label: 'Orders by months',
+                        data: orders, // përdorim vargun e numrit të porosive për chartin
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        });
+
+        $.getJSON("/api/AdminApi/sales-by-months", function (data) {
+
+            let ctx = document.getElementById('myLineChart').getContext('2d');
+
+            let myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.month),
+                    datasets: [{
+                        label: 'Sales by months',
+                        data: data.map(d => d.totalSales),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    animations: {
+                        tension: {
+                            duration: 1000,
+                            easing: 'linear',
+                            from: 1,
+                            to: 0,
+                            loop: true
+                        }
+                    },
+                }
+            });
+
+        });
+
+        $.getJSON("/api/AdminApi/sales-by-month", function (data) {
+
+            var sales = document.getElementById("sales");
+
+            console.log(data);
+
+            if (data[0].percentIncrease < 0) {
+
+                sales.innerHTML = "$" + data[0].totalSales + " (" + parseFloat(data[0].percentIncrease.toString()).toFixed(2) + "% &#8595)";
+            }
+            else {
+                sales.innerHTML = "$" + data[0].totalSales + " (" + parseFloat(data[0].percentIncrease.toString()).toFixed(2) + "% &#8593)";
+            }
+        });
+
+    });
+
+</script>

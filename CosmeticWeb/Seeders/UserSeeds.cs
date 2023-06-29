@@ -1,4 +1,5 @@
-﻿using CosmeticWeb.ViewModels;
+﻿using CosmeticWeb.Models;
+using CosmeticWeb.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace CosmeticWeb.Seeders
@@ -22,7 +23,7 @@ namespace CosmeticWeb.Seeders
             //Users//
             var getUsers = configuration.GetSection(UsersSettingsViewModel.SectionName).Get<UsersSettingsViewModel[]>();
 
-            var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
             foreach (var item in getUsers)
             {
@@ -30,11 +31,13 @@ namespace CosmeticWeb.Seeders
 
                 if (User == null)
                 {
-                    var newUser = new IdentityUser()
+                    var newUser = new User()
                     {
                         UserName = item.UserName,
                         Email = item.UserName,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        BirthDay = DateTime.UtcNow,
+                        Gender = "Female"
                     };
 
                     await userManager.CreateAsync(newUser, item.Password);

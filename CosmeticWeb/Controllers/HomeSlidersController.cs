@@ -27,12 +27,15 @@ namespace CosmeticWeb.Controllers
               return View(await _context.homeSliders!.ToListAsync());
         }
 
+        #region Shfaq formen per krijimin e homeslider te ri
         [Authorize(Roles = "Admin,Employee")]
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
+        #region Krijon homeslider te ri me te dhenat e marra nga useri
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -58,6 +61,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(homeSlider);
         }
+        #endregion
+
+        #region Shfaq formen per te edituar homeslider
 
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Edit(Guid? id)
@@ -74,7 +80,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(homeSlider);
         }
+        #endregion
 
+        #region Edito produktin me te dhenat nga forma
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
@@ -125,7 +133,9 @@ namespace CosmeticWeb.Controllers
             }
             return View(homeSlider);
         }
+        #endregion
 
+        #region Shfaq formen per te fshire homeslider
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -143,7 +153,9 @@ namespace CosmeticWeb.Controllers
 
             return View(homeSlider);
         }
+        #endregion
 
+        #region Fshin homeslider
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Employee")]
         [HttpPost, ActionName("Delete")]
@@ -171,10 +183,13 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region Kthen true ose false nqs homeslider me at id egziston
         private bool HomeSliderExists(Guid id)
         {
           return _context.homeSliders!.Any(e => e.Id == id);
         }
+        #endregion
     }
 }

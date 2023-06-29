@@ -1,0 +1,225 @@
+﻿@using CosmeticWeb.Data;
+@using CosmeticWeb.Helpers;
+@inject ApplicationDbContext db;
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+
+    string modeClass = ModeHelper.GetModeClass(Context.Request);
+    var userImage = GetUserImageHelper.UserImagePath(User.Identity!.Name!, db);
+}
+
+<style>
+    .personalDataContainer {
+        padding: 50px;
+        width: 100%;
+        height: 410px;
+        overflow: hidden;
+    }
+
+    .row {
+        justify-content: center;
+    }
+
+    .form-floating > .form-control, .form-floating > .form-select {
+        height: calc(4.5rem + 2px);
+    }
+
+    .form-control {
+        font-size: 1.8rem;
+    }
+
+    .form-label {
+        font-size: 12px;
+    }
+
+    .nav-item a {
+        padding: 10px;
+        font-size: 13px;
+        color: #f05462;
+    }
+
+        .nav-item a:hover {
+            color: #e3a8ad !important;
+        }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #f05462;
+        border: 1px solid #f05462;
+    }
+
+    #update-profile-button,
+    #change-email-button,
+    #change-password-form > button,
+    #download-data > button,
+    #delete,
+    .uploadProfilePictureForm button,
+    .dark-mode #socialLoginList button {
+        border: 1px solid #f05462 !important;
+        color: #f05462;
+    }
+
+        #update-profile-button:hover,
+        #change-email-button:hover,
+        #change-password-form > button:hover,
+        #download-data > button:hover,
+        #delete:hover,
+        .uploadProfilePictureForm button:hover,
+        .dark-mode #socialLoginList button:hover {
+            color: #fff;
+            outline: none;
+        }
+
+    .alert-success {
+        font-size: 15px;
+    }
+
+    .dark-mode button, .dark-mode #delete {
+        background: transparent;
+    }
+
+        .dark-mode #delete:hover {
+            background-color: #f05462;
+        }
+
+    .dark-mode hr {
+        color: #f05462;
+    }
+
+    .dark-mode .row input,
+    .dark-mode #Email,
+    .dark-mode input:active,
+    .dark-mode #Email:active,
+    .dark-mode Input_OldPassword,
+    .dark-mode Input_OldPassword:active {
+        background: transparent !important;
+        color: grey !important;
+        border: none;
+        border-bottom: 1px solid grey;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .dark-mode .text-success,
+    .dark-mode .text-success:active {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid grey !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .form-floating label {
+        padding: 5px;
+        font-size: 13px;
+    }
+
+    .profilePictureContainer {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dark-mode .externalLogin,
+    .dark-mode .profilePic {
+        color: grey;
+    }
+</style>
+
+<div style="padding: 50px;" class="personalDataContainer @modeClass">
+
+
+    <h1 style="text-align: center">Manage your account</h1>
+
+    <div>
+
+        <hr />
+        <br />
+
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-3">
+                @RenderBody()
+            </div>
+            <div class="col-md-6 profilePictureContainer">
+
+
+                <div class="profilePicture">
+                    <br />
+                    <img src="/UsersProfileImages/@userImage" width="200px" style="padding:25px" id="output" />
+                </div>
+
+                <form method="post" id="uploadProfilePictureForm" enctype="multipart/form-data" class="uploadProfilePictureForm">
+
+                    <div class="form-group">
+                        <label class="control-label profilePic" style="font-size:15px; font-weight:500;">Profile Picture</label>
+                        <input name="file" type="file" class="form-control" accept="image/*" onchange="loadFile(event)" id="file" required />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary"> Upload </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <hr />
+
+</div>
+
+<script>
+
+    function loadFile(event) {
+        var image = document.getElementById('output');
+        image.style.display = "block";
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    $(document).ready(function () {
+
+        $('#uploadProfilePictureForm').submit(function (event) {
+
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "/Users/UploadProfilePicture",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    alert('Profile picture uploaded successfully!');
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+
+    });
+</script>
+
+
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

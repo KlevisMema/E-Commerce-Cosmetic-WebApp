@@ -25,18 +25,23 @@ namespace CosmeticWeb.Controllers
 
         #endregion
 
+        #region shfaq listen e testimonials
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Testimonials!.ToListAsync());
         }
+        #endregion
 
+        #region shfaq formen per te krijuar nje testimonial
         [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
+        #region testimonail eshte krijuar dhe ruhet ne databaze 
         [HttpPost]
         [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
@@ -63,7 +68,9 @@ namespace CosmeticWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region shfaq view e fshirjes "Are you sure you want to delete"
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -81,7 +88,9 @@ namespace CosmeticWeb.Controllers
 
             return View(testimonial);
         }
+        #endregion
 
+        #region konfirmohet fshirja
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin,Employee")]
@@ -109,10 +118,7 @@ namespace CosmeticWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
-        private bool TestimonialExists(Guid id)
-        {
-            return _context.Testimonials!.Any(e => e.Id == id);
-        }
     }
 }

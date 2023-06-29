@@ -1,9 +1,11 @@
-﻿using CosmeticWeb.Data;
+﻿#region
+using CosmeticWeb.Data;
 using CosmeticWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization; 
+#endregion
 
 namespace CosmeticWeb.Controllers
 {
@@ -243,5 +245,39 @@ namespace CosmeticWeb.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Search([FromForm] IFormCollection frm_coll)
+        {
+            var products = new List<Product>();
+
+            if (!String.IsNullOrEmpty(frm_coll["productName"]))
+            {
+                products = await _context.Products!.Where(x => x.Name!.Contains(frm_coll["productName"])).ToListAsync();
+            }
+
+            ViewBag.ProductNameSearched = frm_coll["productName"];
+
+            return View(products);
+        }
+
+        public async Task<IActionResult> Filter(IFormCollection frm_coll)
+        {
+            var products = new List<Product>();
+
+            if (!String.IsNullOrEmpty(frm_coll["selectedValue"]))
+            {
+                string selectedValue = frm_coll["selectedValue"].ToString();
+
+                if (selectedValue == "Price")
+                {
+                    products = await _context.Products!.OrderBy(x => x.Price).ToListAsync();
+                }
+                if (selectedValue == "Rating")
+                {
+                    products = await _context.Products!.OrderBy(x => x.Rating).ToListAsync();
+                }
+            }
+
+            return View("AllProducts", products);
+        }
     }
 }
